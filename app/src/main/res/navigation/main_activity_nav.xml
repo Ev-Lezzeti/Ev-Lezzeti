@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_nav"
+    app:startDestination="@id/splashScreenFragment">
+
+    <fragment
+        android:id="@+id/girisYapFragment"
+        android:name="com.example.evlezzeti.ui.fragment.girissayfasi.GirisYapFragment"
+        android:label="fragment_giris_yap"
+        tools:layout="@layout/fragment_giris_yap" >
+        <action
+            android:id="@+id/girisYapToBottomNav"
+            app:destination="@id/bottom_nav" />
+        <action
+            android:id="@+id/girisYapToEPostaKaydol"
+            app:destination="@id/EPostaKaydolFragment" />
+    </fragment>
+    <include app:graph="@navigation/bottom_nav" />
+    <fragment
+        android:id="@+id/onBoard1Fragment"
+        android:name="com.example.evlezzeti.ui.fragment.girissayfasi.OnBoard1Fragment"
+        android:label="fragment_on_board"
+        tools:layout="@layout/fragment_on_board1" >
+        <action
+            android:id="@+id/onBoard2Gecis"
+            app:destination="@id/onBoard2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoard2Fragment"
+        android:name="com.example.evlezzeti.ui.fragment.girissayfasi.OnBoard2Fragment"
+        android:label="fragment_on_board2"
+        tools:layout="@layout/fragment_on_board2" >
+        <action
+            android:id="@+id/onBoard3FragmentGecis"
+            app:destination="@id/onBoard3Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoard3Fragment"
+        android:name="com.example.evlezzeti.ui.fragment.girissayfasi.OnBoard3Fragment"
+        android:label="fragment_on_board3"
+        tools:layout="@layout/fragment_on_board3" >
+        <action
+            android:id="@+id/girisYapGecis"
+            app:destination="@id/girisYapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.evlezzeti.ui.fragment.girissayfasi.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/onBoard1Gecis"
+            app:destination="@id/onBoard1Fragment" />
+        <action
+            android:id="@+id/splashToBottomNav"
+            app:destination="@id/bottom_nav" />
+    </fragment>
+    <fragment
+        android:id="@+id/EPostaKaydolFragment"
+        android:name="com.example.evlezzeti.ui.fragment.girissayfasi.EPostaKaydolFragment"
+        android:label="fragment_e_posta_kaydol"
+        tools:layout="@layout/fragment_e_posta_kaydol" />
+</navigation>

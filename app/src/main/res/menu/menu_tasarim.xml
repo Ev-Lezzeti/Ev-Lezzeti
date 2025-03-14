@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:tintMode="src_in"
+        android:iconTint="@color/anaRenk"
+        android:id="@+id/bottomNavMenuFragment"
+        android:icon="@drawable/menu_resim"
+        android:title="Mutfaklar" />
+    <item
+        android:id="@+id/bottomNavSepetFragment"
+        android:icon="@drawable/sepet_resim"
+        android:title="Sepet" />
+    <item
+        android:id="@+id/bottomNavProfilFragment"
+        android:icon="@drawable/profil_resim"
+        android:title="Profil" />
+</menu>

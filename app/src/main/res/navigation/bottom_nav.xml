@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav"
+    app:startDestination="@id/bottomNavMenuFragment">
+
+    <fragment
+        android:id="@+id/bottomNavMenuFragment"
+        android:name="com.example.evlezzeti.ui.fragment.BottomNavMenuFragment"
+        android:label="BottomNavMenuFragment"
+        tools:layout="@layout/fragment_bottom_nav_menu">
+        <action
+            android:id="@+id/restaurantDetayGecis"
+            app:destination="@id/restaurantDetayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bottomNavSepetFragment"
+        android:name="com.example.evlezzeti.ui.fragment.BottomNavSepetFragment"
+        android:label="BottomNavSepetFragment"
+        tools:layout="@layout/fragment_bottom_nav_sepet"/>
+    <fragment
+        android:id="@+id/bottomNavProfilFragment"
+        android:name="com.example.evlezzeti.ui.fragment.BottomNavProfilFragment"
+        android:label="BottomNavProfilFragment"
+        tools:layout="@layout/fragment_bottom_nav_profil"/>
+    <fragment
+        android:id="@+id/restaurantDetayFragment"
+        android:name="com.example.evlezzeti.ui.fragment.RestaurantDetayFragment"
+        android:label="fragment_restaurant_detay"
+        tools:layout="@layout/fragment_restaurant_detay" >
+        <argument
+            android:name="restaurant"
+            app:argType="com.example.evlezzeti.data.entity.Restaurant" />
+    </fragment>
+</navigation>

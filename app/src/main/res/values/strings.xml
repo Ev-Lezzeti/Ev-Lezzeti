@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">EvLezzeti</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="giris_kaydol_button">Kaydol</string>
+    <string name="giris_girisYap_button">Giriş Yap</string>
+
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="giris_sayfasi_hosgeldiniz">Ev Lezzeti\'ne Hoşgeldiniz!!!</string>
+    <string name="giris_sayfasi_giris_yap">Hesabınız varsa aşağıdaki seçenekleri kullanarak giriş yapabilirsiniz!</string>
+    <string name="giris_sayfasi_hesap_olustur">Hesabın yoksa buradan kaydolabilirsin!</string>
+    <string name="giris_sayfasi_google_kaydol_button">Google ile Bağlan</string>
+    <string name="giris_sayfasi_ePosta_kaydol_button">E-Posta ile Kaydol</string>
+    
+    <string name="default_web_client_id">679114511045-k2j44f4g7t6midfcm1eomjh2eo5t8d6v.apps.googleusercontent.com</string>
+
+
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+</resources>

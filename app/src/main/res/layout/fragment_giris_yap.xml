@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.fragment.girissayfasi.GirisYapFragment">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/giris_gif_json" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/girisYapButton"
+        style="@style/ButtonStyle"
+        android:layout_marginTop="8dp"
+        android:height="50dp"
+        android:text="@string/giris_girisYap_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sifreInputLayout"
+        app:strokeColor="@color/white"
+        app:strokeWidth="2dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ePostaInputLayout"
+        style="@style/TextInputStyle"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewGirisYap">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ePostaEditText"
+            style="@style/KucukTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="merhaba@evlezzeti.com"
+            android:text="merhaba@evlezzeti.com"
+            android:textAlignment="viewStart" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/sifreInputLayout"
+        style="@style/TextInputStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ePostaInputLayout">
+
+        <EditText
+            android:id="@+id/sifreEditText"
+            style="@style/KucukTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="300"
+            android:ems="10"
+            android:hint="********"
+            android:inputType="textPassword"
+            android:textAlignment="viewStart"
+            android:visibility="visible" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textViewHosgeldiniz"
+        style="@style/GenelTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dosis_bold"
+        android:text="@string/giris_sayfasi_hosgeldiniz"
+        android:textColor="@color/anaRenk"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView" />
+
+    <TextView
+        android:id="@+id/textViewGirisYap"
+        style="@style/KucukTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/giris_sayfasi_giris_yap"
+        android:textAlignment="center"
+        android:textColor="@color/anaRenk"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHosgeldiniz" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/googleBaglanButton">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:background="#616161" />
+
+        <TextView
+            android:id="@+id/textViewKaydol"
+            style="@style/KucukTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/white"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="@string/giris_sayfasi_hesap_olustur"
+            android:textColor="@color/anaRenk"
+            android:textSize="18sp" />
+
+    </FrameLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/googleBaglanButton"
+        style="@style/ButtonStyle"
+        android:layout_marginTop="8dp"
+        android:height="50dp"
+        android:fontFamily="@font/dosis_medium"
+        android:text="@string/giris_sayfasi_google_kaydol_button"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/girisYapButton"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ePostaKaydolButton"
+        style="@style/ButtonStyle"
+        android:layout_marginTop="8dp"
+        android:height="50dp"
+        android:text="@string/giris_sayfasi_ePosta_kaydol_button"
+        android:textColor="@color/white"
+        app:icon="@drawable/email_icon"
+        app:iconGravity="textStart"
+        app:iconPadding="4dp"
+        app:iconSize="24dp"
+        app:iconTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        app:strokeColor="@color/white"
+        app:strokeWidth="2dp" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        app:cardBackgroundColor="#E4E4E4"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/googleBaglanButton"
+        app:layout_constraintStart_toStartOf="@+id/googleBaglanButton"
+        app:layout_constraintTop_toTopOf="@+id/googleBaglanButton">
+
+        <ImageView
+            android:id="@+id/imageViewGoogleIcon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/google_icon_two" />
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

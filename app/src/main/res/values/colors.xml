@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="anaRenk">#FF642F</color>
+    <color name="yardımcıRenk">#FFFFFFFF</color>
+    <color name="primary">#FF5722</color>
+    <color name="primary_dark">#E64A19</color>
+    <color name="primary_light">#FFAB91</color>
+    <color name="accent">#FF8A65</color>
+    <color name="primary_variant">#FF7043</color>
+    <color name="primary_transparent">#1AFF5722</color>
+    <color name="gray">#757575</color>
+    <color name="light_gray">#F5F5F5</color>
+    <color name="card_shadow">#1A000000</color>
+
+</resources>

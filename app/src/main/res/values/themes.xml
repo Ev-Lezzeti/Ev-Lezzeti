@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.EvLezzeti" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/anaRenk</item>
+    </style>
+
+    <style name="Theme.EvLezzeti" parent="Base.Theme.EvLezzeti" />
+
+    <!-- Bottom Navigation tema ayarları -->
+    <style name="BottomNavigationTheme" parent="Widget.Material3.BottomNavigationView">
+        <item name="android:background">@drawable/bottom_nav_background</item>
+    </style>
+</resources>
