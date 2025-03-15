@@ -10,9 +10,7 @@
         android:name="com.example.evlezzeti.ui.fragment.BottomNavMenuFragment"
         android:label="BottomNavMenuFragment"
         tools:layout="@layout/fragment_bottom_nav_menu">
-        <action
-            android:id="@+id/restaurantDetayGecis"
-            app:destination="@id/restaurantDetayFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/bottomNavSepetFragment"
@@ -24,13 +22,5 @@
         android:name="com.example.evlezzeti.ui.fragment.BottomNavProfilFragment"
         android:label="BottomNavProfilFragment"
         tools:layout="@layout/fragment_bottom_nav_profil"/>
-    <fragment
-        android:id="@+id/restaurantDetayFragment"
-        android:name="com.example.evlezzeti.ui.fragment.RestaurantDetayFragment"
-        android:label="fragment_restaurant_detay"
-        tools:layout="@layout/fragment_restaurant_detay" >
-        <argument
-            android:name="restaurant"
-            app:argType="com.example.evlezzeti.data.entity.Restaurant" />
-    </fragment>
+
 </navigation>
