@@ -21,16 +21,20 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
-        android:layout_width="0dp"
+        style="@style/BottomNavigationTheme"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/primary_transparent"
+        app:elevation="0dp"
         app:itemActiveIndicatorStyle="@style/Theme.BottomNavigationView.ActiveIndicator"
+        app:itemIconSize="24dp"
+        app:itemIconTint="@color/bottom_nav_colors"
         app:itemRippleColor="@android:color/transparent"
+        app:itemTextColor="@color/bottom_nav_colors"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        style="@style/BottomNavigationTheme"
-        app:itemIconTint="@color/bottom_nav_colors"
-        app:itemTextColor="@color/bottom_nav_colors"
         app:menu="@menu/menu_tasarim" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
