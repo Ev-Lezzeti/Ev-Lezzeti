@@ -4,14 +4,16 @@ import androidx.lifecycle.MutableLiveData
 import com.example.evlezzeti.data.entity.Kategori
 import com.example.evlezzeti.data.entity.Kullanici
 import com.example.evlezzeti.data.entity.Mutfak
+import com.example.evlezzeti.data.entity.Oneri
 import com.google.firebase.firestore.CollectionReference
 
 
-class FirestoreDataSource (var mutfakCollection: CollectionReference, var kategoriCollection: CollectionReference) {
+class FirestoreDataSource (var mutfakCollection: CollectionReference, var kategoriCollection: CollectionReference, var oneriCollection: CollectionReference) {
 
     var kullanici = MutableLiveData<Kullanici>()
     var mutfakListe = MutableLiveData<List<Mutfak>>()
     var kategoriListe = MutableLiveData<List<Kategori>>()
+    var oneriListe = MutableLiveData<List<Oneri>>()
 
     fun kullaniciGirisKontrol(ePosta:String, sifre:String): Boolean {
 
@@ -21,23 +23,24 @@ class FirestoreDataSource (var mutfakCollection: CollectionReference, var katego
         return ePosta == dogruEPosta && sifre==dogruSifre
     }
 
-     fun mutfakYukle() : MutableLiveData<List<Mutfak>>{ // Mutfak listesinin dondugu yer
-         mutfakCollection.addSnapshotListener { value, error ->
-             if (value !=null ){
-                 val liste = ArrayList<Mutfak>()
+    fun mutfakYukle() : MutableLiveData<List<Mutfak>>{ // Mutfak listesinin dondugu yer
+        mutfakCollection.addSnapshotListener { value, error ->
+            if (value !=null ){
+                val liste = ArrayList<Mutfak>()
 
-                 for (m in value.documents){
-                     val mutfak = m.toObject(Mutfak::class.java)
-                     if(mutfak != null) {
-                         mutfak.mutfakId = m.id
-                         liste.add(mutfak)
-                     }
-                 }
-                 mutfakListe.value = liste
-             }
-         }
-            return mutfakListe
-     }
+                for (m in value.documents){
+                    val mutfak = m.toObject(Mutfak::class.java)
+                    if(mutfak != null) {
+                        mutfak.mutfakId = m.id
+                        liste.add(mutfak)
+                    }
+                }
+                mutfakListe.value = liste
+            }
+        }
+        return mutfakListe
+    }
+
     fun kategoriYukle() : MutableLiveData<List<Kategori>>{ // Kategori listesinin dondugu yer
         kategoriCollection.addSnapshotListener { value, error ->
             if (value !=null ){
@@ -54,5 +57,23 @@ class FirestoreDataSource (var mutfakCollection: CollectionReference, var katego
             }
         }
         return kategoriListe
+    }
+
+    fun oneriYukle() : MutableLiveData<List<Oneri>>{ // Oneri listesinin dondugu yer
+        oneriCollection.addSnapshotListener { value, error ->
+            if (value !=null ){
+                val liste = ArrayList<Oneri>()
+                value.documents
+                for (o in value.documents){
+                    val oneri = o.toObject(Oneri::class.java)
+                    if(oneri != null) {
+                        oneri.onerlerilerId = o.id
+                        liste.add(oneri)
+                    }
+                }
+                oneriListe.value = liste
+            }
+        }
+        return oneriListe
     }
 }

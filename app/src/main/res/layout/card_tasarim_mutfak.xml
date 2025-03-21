@@ -17,7 +17,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/tasarimCardView"
             android:layout_width="match_parent"
-            android:layout_height="210dp"
+            android:layout_height="300dp"
             android:layout_margin="5dp"
             app:cardCornerRadius="15dp">
 
@@ -77,7 +77,7 @@
                 <ImageView
                     android:id="@+id/imageViewMutfakResim"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="150dp"
                     android:background="@color/anaRenk"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/mutfak_resim" />
@@ -127,14 +127,17 @@
                 </androidx.cardview.widget.CardView>
 
                 <ImageView
-                    android:id="@+id/imageView6"
+                    android:id="@+id/favoriteButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:scaleType="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginTop="196dp"
+                    android:layout_marginEnd="56dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/unlike" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
