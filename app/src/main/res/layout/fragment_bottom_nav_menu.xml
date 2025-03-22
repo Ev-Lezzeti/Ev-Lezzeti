@@ -94,7 +94,7 @@
                android:textAlignment="viewStart"
                android:textColor="@color/anaRenk"
                android:textSize="24sp"
-               android:textStyle="bold|italic"
+               android:textStyle="bold"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
