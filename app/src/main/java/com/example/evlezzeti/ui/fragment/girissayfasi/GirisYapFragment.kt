@@ -32,6 +32,7 @@ class GirisYapFragment : Fragment() {
     private val googleSignInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         val data = result.data
         val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+
         try {
             val account = task.getResult(ApiException::class.java)
             firebaseAuthWithGoogle(account.idToken!!)
@@ -72,20 +73,29 @@ class GirisYapFragment : Fragment() {
                 return@setOnClickListener
             }
             else {
-                val durum = viewModel.kullaniciGirisKontrol(ePosta,sifre)
-
-                // Giris basarili
-                if (durum){
-                    Navigation.findNavController(it).navigate(R.id.girisYapToBottomNav)
+                auth.signInWithEmailAndPassword(ePosta,sifre).addOnSuccessListener {
+                    Toast.makeText(requireContext(), "Giriş başarılı!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(requireContext(), BottomNavActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-
                     startActivity(intent)
                 }
-                // Giris basarisiz
-                else {
-                    Toast.makeText(requireContext(), "E-Posta veya şifre Hatalı!!", Toast.LENGTH_LONG).show()
-                }
+                    .addOnFailureListener { e ->
+                        //Hatalı Giriş
+                        Toast.makeText(requireContext(), "Hata: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
+                    }
+                //val durum = viewModel.kullaniciGirisKontrol(ePosta,sifre)
+//                // Giris basarili
+//                if (durum){
+//                    Navigation.findNavController(it).navigate(R.id.girisYapToBottomNav)
+//                    val intent = Intent(requireContext(), BottomNavActivity::class.java)
+//                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//
+//                    startActivity(intent)
+//                }
+//                // Giris basarisiz
+//                else {
+//                    Toast.makeText(requireContext(), "E-Posta veya şifre Hatalı!!", Toast.LENGTH_LONG).show()
+//                }
             }
         }
 

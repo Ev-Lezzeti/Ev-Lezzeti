@@ -38,7 +38,7 @@ class SplashScreenFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
 
         if (auth.currentUser != null){
-            Toast.makeText(requireContext(),"Helal olsun",Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(),"Kullanıcı Girişi : ${auth.currentUser?.email} ",Toast.LENGTH_LONG).show()
             view?.let { Navigation.findNavController(it).navigate(R.id.splashToBottomNav) }
             val intent = Intent(requireContext(), BottomNavActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
