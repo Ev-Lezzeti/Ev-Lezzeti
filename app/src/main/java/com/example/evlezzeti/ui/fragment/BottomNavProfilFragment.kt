@@ -3,6 +3,8 @@ package com.example.evlezzeti.ui.fragment
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +24,7 @@ import kotlinx.coroutines.*
 class BottomNavProfilFragment : Fragment() {
     private lateinit var binding: FragmentBottomNavProfilBinding
     private lateinit var auth : FirebaseAuth
+    private val cikisYapDuration = 1000L
 
     @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onCreateView(
@@ -46,18 +49,19 @@ class BottomNavProfilFragment : Fragment() {
                 FirebaseAuth.getInstance().signOut()
                 //auth.currentUser?.delete()
             }
-            // Çıkış işlemi tamamlandıktan sonra yapılacak işlemler
-            binding.textView2.text = auth.currentUser?.displayName.toString()
-            val intent = Intent(requireContext(), MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
 
-            // Mevcut activity'i kapat
-            requireActivity().finish()
-            // Burda  sharedPreferences kullanarak durumları kontrol ettirip splash
-            //ekranına gecince duruma göre farklı navigateler kullanılıcak
+            Handler(Looper.getMainLooper()).postDelayed({// Çıkış işlemi tamamlandıktan sonra yapılacak işlemler
+                binding.textView2.text = auth.currentUser?.email.toString()
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+
+                // Mevcut activity'i kapat
+                requireActivity().finish()
+                // Burda  sharedPreferences kullanarak durumları kontrol ettirip splash
+                //ekranına gecince duruma göre farklı navigateler kullanılıcak
+            },cikisYapDuration)
         }
-
 
         return binding.root
     }
