@@ -1,7 +1,10 @@
 package com.example.evlezzeti.ui.fragment.girissayfasi
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +31,7 @@ class GirisYapFragment : Fragment() {
     private lateinit var binding : FragmentGirisYapBinding
     private lateinit var viewModel: GirisYapViewModel
     private lateinit var auth: FirebaseAuth
+    private val girisYapDuration = 1000L
     private lateinit var googleSignInClient: GoogleSignInClient
     private val googleSignInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         val data = result.data
@@ -73,29 +77,8 @@ class GirisYapFragment : Fragment() {
                 return@setOnClickListener
             }
             else {
-                auth.signInWithEmailAndPassword(ePosta,sifre).addOnSuccessListener {
-                    Toast.makeText(requireContext(), "Giriş başarılı!", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(requireContext(), BottomNavActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                    startActivity(intent)
-                }
-                    .addOnFailureListener { e ->
-                        //Hatalı Giriş
-                        Toast.makeText(requireContext(), "Hata: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
-                    }
-                //val durum = viewModel.kullaniciGirisKontrol(ePosta,sifre)
-//                // Giris basarili
-//                if (durum){
-//                    Navigation.findNavController(it).navigate(R.id.girisYapToBottomNav)
-//                    val intent = Intent(requireContext(), BottomNavActivity::class.java)
-//                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-//
-//                    startActivity(intent)
-//                }
-//                // Giris basarisiz
-//                else {
-//                    Toast.makeText(requireContext(), "E-Posta veya şifre Hatalı!!", Toast.LENGTH_LONG).show()
-//                }
+                //OTP kontrol ve Giris islemleri
+                    otpKontrolGecis(ePosta ,sifre)
             }
         }
 
@@ -131,6 +114,32 @@ class GirisYapFragment : Fragment() {
                 }
             }
     }
+
+    @SuppressLint("SuspiciousIndentation")
+    private fun otpKontrolGecis(ePosta: String, sifre: String) {
+        var durum =viewModel.otpKontrol(ePosta) // OTP kontrolünü başlat
+        Handler(Looper.getMainLooper()).postDelayed({
+            Toast.makeText(requireContext(), "Doğrulanma Durumu: $durum", Toast.LENGTH_SHORT).show()
+
+            if (durum == false) {
+                val gecis = GirisYapFragmentDirections.girisYapToKullaniciVerified(ePosta = ePosta)
+                Navigation.findNavController(binding.root).navigate(gecis)
+            }
+            else if (durum == true) {
+                auth.signInWithEmailAndPassword(ePosta, sifre)
+                    .addOnSuccessListener {
+                        Toast.makeText(requireContext(), "Giriş başarılı!", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(requireContext(), BottomNavActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        startActivity(intent)
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(requireContext(), "Hata: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
+                    }
+            }
+        },girisYapDuration)
+    }
+
 
     //Direkt viewmodel Kullanamadigimiz icin burası sart
     override fun onCreate(savedInstanceState: Bundle?) {

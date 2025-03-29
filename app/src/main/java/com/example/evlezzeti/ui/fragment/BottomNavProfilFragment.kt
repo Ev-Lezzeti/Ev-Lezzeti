@@ -11,15 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
-import com.example.evlezzeti.BottomNavActivity
 import com.example.evlezzeti.MainActivity
 import com.example.evlezzeti.R
 import com.example.evlezzeti.databinding.FragmentBottomNavProfilBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.*
 
 class BottomNavProfilFragment : Fragment() {
     private lateinit var binding: FragmentBottomNavProfilBinding

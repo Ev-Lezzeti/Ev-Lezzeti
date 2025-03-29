@@ -5,23 +5,23 @@ import com.example.evlezzeti.data.entity.Kategori
 import com.example.evlezzeti.data.entity.Kullanici
 import com.example.evlezzeti.data.entity.Mutfak
 import com.example.evlezzeti.data.entity.Oneri
+import com.example.evlezzeti.data.entity.Users
 import com.google.firebase.firestore.CollectionReference
 
 
-class FirestoreDataSource (var mutfakCollection: CollectionReference, var kategoriCollection: CollectionReference, var oneriCollection: CollectionReference) {
+class FirestoreDataSource (var mutfakCollection: CollectionReference,
+                           var kategoriCollection: CollectionReference,
+                           var oneriCollection: CollectionReference ,
+                           var usersCollection: CollectionReference) {
 
     var kullanici = MutableLiveData<Kullanici>()
     var mutfakListe = MutableLiveData<List<Mutfak>>()
     var kategoriListe = MutableLiveData<List<Kategori>>()
     var oneriListe = MutableLiveData<List<Oneri>>()
+    var usersListe = MutableLiveData<List<Users>>()
+    var otp = false
+    var guncelleme = false
 
-    fun kullaniciGirisKontrol(ePosta:String, sifre:String): Boolean {
-
-        var dogruEPosta = "merhaba@evlezzeti.com"
-        var dogruSifre = "1"
-
-        return ePosta == dogruEPosta && sifre==dogruSifre
-    }
 
     fun mutfakYukle() : MutableLiveData<List<Mutfak>>{ // Mutfak listesinin dondugu yer
         mutfakCollection.addSnapshotListener { value, error ->
@@ -75,5 +75,49 @@ class FirestoreDataSource (var mutfakCollection: CollectionReference, var katego
             }
         }
         return oneriListe
+    }
+
+    fun otpKontrol(ePosta: String) : Boolean { //users listesi alinir
+        usersCollection.addSnapshotListener { value, error ->
+            if (value !=null ){
+                val liste = ArrayList<Users>()
+                for (u in value.documents){
+                    //var user = u.toObject(Users::class.java)
+
+                    val email =u.getString("email")?: ""
+                    val isVerified = u.getBoolean("isVerified")?: false
+                    val uid = u.getString("uid")?: ""
+                    val user = Users(email,isVerified,uid)
+                    if (user.email== ePosta && user.isVerified == true) {
+                        otp = true
+                    }
+                }
+            }
+        }
+        return otp
+    }
+
+    fun otpGuncelle(ePosta: String) : Boolean {
+        usersCollection.addSnapshotListener { value, error ->
+            if (value !=null ){
+                val liste = ArrayList<Users>()
+
+                for (u in value.documents){
+                    val user = u.toObject(Users::class.java)
+                    if(user != null) {
+                        liste.add(user)
+                        if (user.email == ePosta){
+                            val guncelUser = HashMap<String,Any>()
+                            guncelUser["isVerified"] = true
+                            guncelUser["email"] = user.email.toString()
+                            guncelUser["uid"] = user.uid.toString()
+                            usersCollection.document(user.uid!!).update(guncelUser)
+                            guncelleme = true
+                        }
+                    }
+                }
+            }
+        }
+        return guncelleme
     }
 }

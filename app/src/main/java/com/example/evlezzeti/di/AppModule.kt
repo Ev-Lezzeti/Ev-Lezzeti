@@ -39,12 +39,20 @@ class AppModule {
 
     @Provides
     @Singleton
+    @Named("users")
+    fun provideUsersCollectionReference(): CollectionReference {
+        return Firebase.firestore.collection("users")
+    }
+
+    @Provides
+    @Singleton
     fun provideFireStoreDataSource(
         @Named("Mutfaklar") mutfakCollection: CollectionReference,
         @Named("Kategoriler") kategoriCollection: CollectionReference,
-        @Named("Oneriler") onerilerCollection: CollectionReference
+        @Named("Oneriler") onerilerCollection: CollectionReference,
+        @Named("users") usersCollection: CollectionReference
     ): FirestoreDataSource {
-        return FirestoreDataSource(mutfakCollection, kategoriCollection, onerilerCollection)
+        return FirestoreDataSource(mutfakCollection, kategoriCollection, onerilerCollection , usersCollection  )
     }
 
     @Provides
