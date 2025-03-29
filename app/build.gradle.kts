@@ -5,6 +5,8 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("com.google.gms.google-services")
+
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -67,7 +69,7 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.dagger.hilt.android.compiler)
     implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
-    implementation("com.google.firebase:firebase-firestore:25.1.1")
+    implementation("com.google.firebase:firebase-firestore")
     implementation ("com.google.firebase:firebase-auth-ktx:22.3.1")
     implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
     implementation("androidx.credentials:credentials:1.3.0")

@@ -16,6 +16,9 @@
         <action
             android:id="@+id/girisYapToEPostaKaydol"
             app:destination="@id/EPostaKaydolFragment" />
+        <action
+            android:id="@+id/girisYapToKullaniciVerified"
+            app:destination="@id/kullaniciVerified" />
     </fragment>
     <include app:graph="@navigation/bottom_nav" />
     <fragment
@@ -62,4 +65,14 @@
         android:name="com.example.evlezzeti.ui.fragment.girissayfasi.EPostaKaydolFragment"
         android:label="fragment_e_posta_kaydol"
         tools:layout="@layout/fragment_e_posta_kaydol" />
+    <fragment
+        android:id="@+id/kullaniciVerified"
+        android:name="com.example.evlezzeti.ui.fragment.girissayfasi.KullaniciVerified"
+        android:label="fragment_kullanici_verified"
+        tools:layout="@layout/fragment_kullanici_verified" >
+        <argument
+            android:name="ePosta"
+            app:argType="string"
+            android:defaultValue="ePostaYok" />
+    </fragment>
 </navigation>

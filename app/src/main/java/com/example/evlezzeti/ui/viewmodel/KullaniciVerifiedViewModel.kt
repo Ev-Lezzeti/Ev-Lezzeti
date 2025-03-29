@@ -6,10 +6,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class GirisYapViewModel @Inject constructor (var rep : Repository): ViewModel() {
+class KullaniciVerifiedViewModel @Inject constructor (var rep : Repository): ViewModel() {
 
-    fun otpKontrol(ePosta:String) : Boolean {
-        var otpDurum = rep.otpKontrol(ePosta)
-        return otpDurum
+    fun otpGuncelle(ePosta:String) : Boolean{
+        val durum = rep.otpGuncelle(ePosta)
+        return durum
     }
 }
