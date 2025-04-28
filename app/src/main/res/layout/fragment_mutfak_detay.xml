@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="mutfakNesne"
+            type="com.example.evlezzeti.data.entity.Mutfak" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            tools:context=".ui.fragment.MutfakDetayFragment">
+
+            <!-- Turuncu Üst Bar -->
+            <View
+                android:id="@+id/viewTuruncuBar"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="#FF7E1F"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Geri Butonu -->
+
+            <!-- Mutfak İsmi (Üst Bar Ortasında) -->
+
+            <!-- Arama Kutusu -->
+
+            <TextView
+                android:id="@+id/textViewMutfakIsmiBar"
+                style="@style/GenelTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@{mutfakNesne.mutfakAd}"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="27dp"
+                tools:text="Anadolu Mutfağı" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewArama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="12dp"
+                        android:src="@android:drawable/ic_menu_search"
+                        app:tint="#FF7E1F" />
+
+                    <EditText
+                        android:id="@+id/editTextArama"
+                        style="@style/GenelTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@null"
+                        android:hint="Bu Restoranda Ara"
+                        android:textAlignment="viewStart"
+                        android:textColorHint="#9E9E9E"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Mutfak Detay Card'ı -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewMutfakDetay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardViewArama">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <!-- Mutfak Resmi -->
+                    <ImageView
+                        android:id="@+id/imageViewMutfak"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerCrop"
+                        android:background="@color/anaRenk"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/mutfak_resim" />
+
+                    <!-- Mutfak İsmi -->
+                    <TextView
+                        android:id="@+id/textViewMutfakIsmi"
+                        style="@style/GenelTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@{mutfakNesne.mutfakAd}"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageViewMutfak"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Anadolu Mutfağı" />
+
+                    <!-- Konum Bilgisi -->
+                    <TextView
+                        android:id="@+id/textViewKonum"
+                        style="@style/KucukTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@{mutfakNesne.mutfakAdres}"
+                        android:textColor="#757575"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageViewMutfak"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewMutfakIsmi"
+                        tools:text="1.1 km • Sokak Lezzetleri, Dünya Mutfağı  Cafe" />
+
+                    <!-- Yıldız Puanı -->
+                    <LinearLayout
+                        android:id="@+id/linearLayoutYildizPuan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="#8BC34A"
+                        android:orientation="horizontal"
+                        android:padding="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageViewMutfak">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/star"
+                            app:tint="#FFFFFF" />
+
+                        <TextView
+                            android:id="@+id/textViewYildizPuan"
+                            style="@style/GenelTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:text="@{mutfakNesne.mutfakPuan}"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:text="3.6" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:text="(1+)"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- İndirim Bilgisi -->
+                    <TextView
+                        android:id="@+id/textViewIndirim"
+                        style="@style/KucukTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:background="#FF7E1F"
+                        android:padding="8dp"
+                        android:text="@{mutfakNesne.mutfakIndirimTag}"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/linearLayoutYildizPuan"
+                        app:layout_constraintStart_toEndOf="@+id/linearLayoutYildizPuan"
+                        app:layout_constraintTop_toTopOf="@+id/linearLayoutYildizPuan"
+                        tools:text="%20 İndirim" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Yemekler Başlığı -->
+            <TextView
+                android:id="@+id/textViewYemeklerBaslik"
+                style="@style/GenelTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="YEMEKLER"
+                android:textAlignment="viewStart"
+                android:textColor="@color/anaRenk"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardViewMutfakDetay" />
+
+            <!-- Yemekler Listesi -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewYemekler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewYemeklerBaslik"
+                app:layout_constraintVertical_bias="0.0"
+                app:reverseLayout="false"
+                tools:listitem="@layout/card_tasarim_yemek" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

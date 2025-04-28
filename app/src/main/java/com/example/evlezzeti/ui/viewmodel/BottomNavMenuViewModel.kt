@@ -12,6 +12,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -49,16 +50,19 @@ class BottomNavMenuViewModel @Inject constructor (var rep : Repository): ViewMod
         oneriYukle()
     }
 
-    private fun mutfakYukle(){
+    private fun mutfakYukle() {
         _yukleniyor.value = true
-        mutfakListe = rep.mutfakYukle()
-        _yukleniyor.value = false
 
-        // İlk yüklemede filtrelenmiş listeyi de güncelle
-        _filtrelenmisListe.value = mutfakListe.value
+        val liveData = rep.mutfakYukle()
 
-        // Varsayılan olarak yıldız puanına göre sırala
-        siralamaYap(SiralamaTipi.YILDIZ_PUANI)
+        mutfakListe = liveData
+
+        liveData.observeForever { mutfaklar ->
+            if (mutfaklar != null && _filtrelenmisListe.value == null) {
+                _filtrelenmisListe.value = mutfaklar
+                _yukleniyor.value = false
+            }
+        }
     }
 
     private fun kategoriYukle(){

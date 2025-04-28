@@ -16,6 +16,9 @@ class MutfakAdapter(var mContext: Context, var mutfakListesi: List<Mutfak>)
     // Favori butonuna tıklama için callback
     var favoriteClickListener: ((Mutfak) -> Unit)? = null
 
+    var itemClickListener: ((Mutfak) -> Unit)? = null
+
+
     // Favori durumunu kontrol etmek için callback
     var isFavoriteCheck: ((String?) -> Boolean)? = null
 
@@ -28,6 +31,7 @@ class MutfakAdapter(var mContext: Context, var mutfakListesi: List<Mutfak>)
             parent,
             false
         )
+
         return CardTasarimTutucu(binding)
     }
 
@@ -41,6 +45,13 @@ class MutfakAdapter(var mContext: Context, var mutfakListesi: List<Mutfak>)
 
         h.imageViewMutfakResim.setImageResource(
             mContext.resources.getIdentifier(mutfak.mutfakResim,"drawable",mContext.packageName))
+
+        holder.tasarim.root.setOnClickListener{
+            itemClickListener?.invoke(mutfak)
+        }
+        h.tasarimCardView.setOnClickListener {
+
+        }
 
         // Favori butonunun durumunu ayarla
         val isFavorite = isFavoriteCheck?.invoke(mutfak.mutfakId) ?: false

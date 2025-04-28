@@ -25,208 +25,225 @@
             type="com.example.evlezzeti.ui.adapter.OneriAdapter" />
     </data>
 
-   <androidx.core.widget.NestedScrollView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-       <androidx.constraintlayout.widget.ConstraintLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:background="#FFFFFF"
-           tools:context=".ui.fragment.BottomNavMenuFragment">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            tools:context=".ui.fragment.BottomNavMenuFragment">
 
-           <androidx.cardview.widget.CardView
-               android:id="@+id/cardView"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_margin="16dp"
-               android:layout_marginTop="16dp"
-               android:layout_marginBottom="16dp"
-               app:cardCornerRadius="16dp"
-               app:cardElevation="8dp"
-               app:layout_constraintBottom_toTopOf="@+id/kategoriText"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toTopOf="parent"
-               app:layout_constraintVertical_bias="0.0">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp"
+                app:strokeColor="@color/anaRenk"
+                app:strokeWidth="2dp"
+                app:layout_constraintBottom_toTopOf="@+id/kategoriText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
 
-               <LinearLayout
-                   android:layout_width="375dp"
-                   android:layout_height="wrap_content"
-                   android:background="@color/light_gray"
-                   android:gravity="center_vertical"
-                   android:orientation="horizontal"
-                   android:padding="4dp">
+                <LinearLayout
+                    android:layout_width="375dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_gray"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="4dp">
 
-                   <ImageView
-                       android:layout_width="wrap_content"
-                       android:layout_height="24dp"
-                       android:layout_marginStart="12dp"
-                       android:background="@android:color/transparent"
-                       android:src="@android:drawable/ic_menu_search"
-                       android:tint="@color/anaRenk" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="12dp"
+                        android:background="@android:color/transparent"
+                        android:src="@android:drawable/ic_menu_search"
+                        app:tint="@color/anaRenk" />
 
-                   <EditText
-                       android:id="@+id/searchBar"
-                       style="@style/GenelTextStyle"
-                       android:layout_width="match_parent"
-                       android:layout_height="48dp"
-                       android:layout_marginStart="8dp"
-                       android:layout_marginEnd="12dp"
-                       android:afterTextChanged="@{(editable) -> viewModel.mutfakAra(editable.toString())}"
-                       android:background="@null"
-                       android:hint="Mutfak ara..."
-                       android:text="@{viewModel.aramaMetni}"
-                       android:textAlignment="viewStart"
-                       android:textColorHint="@color/gray"
-                       android:textSize="16sp" />
-               </LinearLayout>
-           </androidx.cardview.widget.CardView>
+                    <EditText
+                        android:id="@+id/searchBar"
+                        style="@style/GenelTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="12dp"
+                        android:afterTextChanged="@{(editable) -> viewModel.mutfakAra(editable.toString())}"
+                        android:background="@null"
+                        android:hint="Mutfak ara..."
+                        android:text="@{viewModel.aramaMetni}"
+                        android:textAlignment="viewStart"
+                        android:textColorHint="@color/gray"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-           <TextView
-               android:id="@+id/kategoriText"
-               style="@style/GenelTextStyle"
-               android:layout_width="150dp"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="16dp"
-               android:layout_marginTop="16dp"
-               android:text="KATEGORİLER"
-               android:textAlignment="viewStart"
-               android:textColor="@color/anaRenk"
-               android:textSize="24sp"
-               android:textStyle="bold"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            <TextView
+                android:id="@+id/kategoriText"
+                style="@style/GenelTextStyle"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="KATEGORİLER"
+                android:textAlignment="viewStart"
+                android:textColor="@color/anaRenk"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-           <androidx.recyclerview.widget.RecyclerView
-               android:id="@+id/rVKategoriler"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="16dp"
-               android:adapter="@{kategoriAdapter}"
-               android:orientation="horizontal"
-               android:paddingTop="0dp"
-               android:paddingBottom="0dp"
-               app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintHorizontal_bias="0.0"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/kategoriText"
-               app:reverseLayout="false" />
-
-
-           <!-- Filtreleme Seçenekleri -->
-
-           <androidx.recyclerview.widget.RecyclerView
-               android:id="@+id/rvOneriler"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="16dp"
-               android:adapter="@{oneriAdapter}"
-               android:orientation="horizontal"
-               android:paddingTop="0dp"
-               android:paddingBottom="0dp"
-               app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintHorizontal_bias="0.0"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/textView16"
-               app:reverseLayout="false"
-               tools:listitem="@layout/card_tasarim_oneri" />
-
-           <TextView
-               android:id="@+id/textView14"
-               style="@style/GenelTextStyle"
-               android:layout_width="150dp"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="16dp"
-               android:layout_marginTop="16dp"
-               android:text="MUTFAKLAR"
-               android:textAlignment="viewStart"
-               android:textAllCaps="false"
-               android:textColor="@color/anaRenk"
-               android:textSize="24sp"
-               android:textStyle="bold|italic"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/rvOneriler" />
-
-           <com.google.android.material.chip.ChipGroup
-               android:id="@+id/filterChipGroup"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="16dp"
-               android:layout_marginTop="16dp"
-               android:layout_marginEnd="16dp"
-               app:chipSpacingHorizontal="8dp"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintHorizontal_bias="0.0"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/textView14"
-               app:selectionRequired="true"
-               app:singleSelection="true">
-
-               <com.google.android.material.chip.Chip
-                   android:id="@+id/chipYildiz"
-                   style="@style/Widget.MaterialComponents.Chip.Choice"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:checkable="true"
-                   android:text="Yıldız Puanı"
-                   app:checkedIconEnabled="true" />
-
-               <com.google.android.material.chip.Chip
-                   android:id="@+id/chipMesafe"
-                   style="@style/Widget.MaterialComponents.Chip.Choice"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:checkable="true"
-                   android:text="Mesafe"
-                   app:checkedIconEnabled="true" />
-
-               <com.google.android.material.chip.Chip
-                   android:id="@+id/chipFavoriler"
-                   style="@style/Widget.MaterialComponents.Chip.Choice"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:checkable="true"
-                   android:text="Favoriler"
-                   app:checkedIconEnabled="true" />
-           </com.google.android.material.chip.ChipGroup>
-
-           <androidx.recyclerview.widget.RecyclerView
-               android:id="@+id/rVMutfaklar"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:adapter="@{mutfakAdapter}"
-               android:background="#FDFCFC"
-               android:orientation="vertical"
-               android:paddingTop="0dp"
-               android:paddingBottom="0dp"
-               app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-               app:layout_constraintBottom_toBottomOf="parent"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintHorizontal_bias="0.0"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/filterChipGroup"
-               app:layout_constraintVertical_bias="0.515"
-               app:reverseLayout="false" />
-
-           <TextView
-               android:id="@+id/textView16"
-               style="@style/GenelTextStyle"
-               android:layout_width="150dp"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="16dp"
-               android:layout_marginTop="16dp"
-               android:text="ÖNERİLER"
-               android:textAlignment="viewStart"
-               android:textColor="@color/anaRenk"
-               android:textSize="24sp"
-               android:textStyle="bold|italic"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/rVKategoriler" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rVKategoriler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:adapter="@{kategoriAdapter}"
+                android:orientation="horizontal"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/kategoriText"
+                app:reverseLayout="false" />
 
 
-       </androidx.constraintlayout.widget.ConstraintLayout>
-   </androidx.core.widget.NestedScrollView>
+            <!-- Filtreleme Seçenekleri -->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvOneriler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:adapter="@{oneriAdapter}"
+                android:orientation="horizontal"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView16"
+                app:reverseLayout="false"
+                tools:listitem="@layout/card_tasarim_oneri" />
+
+            <TextView
+                android:id="@+id/textView14"
+                style="@style/GenelTextStyle"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="MUTFAKLAR"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="@color/anaRenk"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvOneriler" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/filterChipGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:chipSpacingHorizontal="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView14"
+                app:selectionRequired="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipYildiz"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Yıldız Puanı"
+                    android:textColor="@color/chip_text_color"
+                    app:chipBackgroundColor="@color/chip_background_color"
+                    app:chipStrokeColor="@color/anaRenk"
+                    app:chipStrokeWidth="2dp"
+                    app:checkedIconEnabled="true"
+                    app:checkedIconTint="@color/white" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipMesafe"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Mesafe"
+                    android:textColor="@color/chip_text_color"
+                    app:chipBackgroundColor="@color/chip_background_color"
+                    app:chipStrokeColor="@color/anaRenk"
+                    app:chipStrokeWidth="2dp"
+                    app:checkedIconEnabled="true"
+                    app:checkedIconTint="@color/white" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipFavoriler"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Favoriler"
+                    android:textColor="@color/chip_text_color"
+                    app:chipBackgroundColor="@color/chip_background_color"
+                    app:chipStrokeColor="@color/anaRenk"
+                    app:chipStrokeWidth="2dp"
+                    app:checkedIconEnabled="true"
+                    app:checkedIconTint="@color/white" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rVMutfaklar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adapter="@{mutfakAdapter}"
+                android:background="#FDFCFC"
+                android:orientation="vertical"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filterChipGroup"
+                app:layout_constraintVertical_bias="0.515"
+                app:reverseLayout="false" />
+
+            <TextView
+                android:id="@+id/textView16"
+                style="@style/GenelTextStyle"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="ÖNERİLER"
+                android:textAlignment="viewStart"
+                android:textColor="@color/anaRenk"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rVKategoriler" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

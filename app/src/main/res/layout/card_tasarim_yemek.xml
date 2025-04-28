@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="yemekNesne"
+            type="com.example.evlezzeti.data.entity.Yemek" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/yemekCardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="3dp"
+            app:cardPreventCornerOverlap="false">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="0dp">
+
+                <!-- Yemek Resmi (Solda tamamen bitişik) -->
+                <ImageView
+                    android:id="@+id/imageViewYemekResim"
+                    android:layout_width="120dp"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:padding="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@drawable/mutfak_resim" />
+
+                <!-- Yemek İsmi -->
+                <TextView
+                    android:id="@+id/textViewYemekAdi"
+                    style="@style/GenelTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{yemekNesne.yemekAd}"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewYemekFiyat"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewYemekResim"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Köfte" />
+
+                <!-- Yemek İçindekiler -->
+                <TextView
+                    android:id="@+id/textViewYemekIcindekiler"
+                    style="@style/KucukTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@{yemekNesne.yemekAyrinti}"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/fabSepeteEkle"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewYemekResim"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewYemekAdi"
+                    tools:text="Dana kıyma, soğan, sarımsak, baharatlar, ekmek içi, maydanoz" />
+
+                <!-- Yemek Fiyat -->
+                <TextView
+                    android:id="@+id/textViewYemekFiyat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{yemekNesne.yemekFiyat}"
+                    android:textColor="@color/anaRenk"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="₺85.00" />
+
+                <!-- Sepete Ekle Butonu (+) -->
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabSepeteEkle"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginEnd="16dp"
+                    android:clickable="true"
+                    android:contentDescription="Sepete Ekle"
+                    android:focusable="true"
+                    app:fabCustomSize="28dp"
+                    app:fabSize="mini"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewYemekIcindekiler"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textViewYemekIcindekiler"
+                    app:maxImageSize="16dp"
+                    app:srcCompat="@android:drawable/ic_input_add"
+                    app:tint="@android:color/white" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</layout>
