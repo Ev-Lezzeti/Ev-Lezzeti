@@ -6,18 +6,21 @@ import com.example.evlezzeti.data.entity.Kullanici
 import com.example.evlezzeti.data.entity.Mutfak
 import com.example.evlezzeti.data.entity.Oneri
 import com.example.evlezzeti.data.entity.Users
+import com.example.evlezzeti.data.entity.Yemek
 import com.google.firebase.firestore.CollectionReference
 
 
 class FirestoreDataSource (var mutfakCollection: CollectionReference,
                            var kategoriCollection: CollectionReference,
                            var oneriCollection: CollectionReference ,
-                           var usersCollection: CollectionReference) {
+                           var usersCollection: CollectionReference,
+                            var yemekCollection: CollectionReference) {
 
     var kullanici = MutableLiveData<Kullanici>()
     var mutfakListe = MutableLiveData<List<Mutfak>>()
     var kategoriListe = MutableLiveData<List<Kategori>>()
     var oneriListe = MutableLiveData<List<Oneri>>()
+    var yemekListe = MutableLiveData<List<Yemek>>()
     var usersListe = MutableLiveData<List<Users>>()
     var otp = false
     var guncelleme = false
@@ -76,6 +79,26 @@ class FirestoreDataSource (var mutfakCollection: CollectionReference,
         }
         return oneriListe
     }
+
+    fun yemekYukle() : MutableLiveData<List<Yemek>>{ // Yemek listesinin dondugu yer
+        yemekCollection.addSnapshotListener { value, error ->
+            if (value !=null ){
+                val liste = ArrayList<Yemek>()
+                value.documents
+                for (o in value.documents){
+                    val yemek = o.toObject(Yemek::class.java)
+                    if(yemek != null) {
+                        yemek.yemekId = o.id
+                        liste.add(yemek)
+                    }
+                }
+                yemekListe.value = liste
+            }
+        }
+        return yemekListe
+    }
+
+
 
     fun otpKontrol(ePosta: String) : Boolean { //users listesi alinir
         usersCollection.addSnapshotListener { value, error ->

@@ -20,7 +20,8 @@ hiltAndroid = "2.49"
 hiltAndroidCompiler = "2.49"
 hiltAndroidGradlePlugin = "2.49"
 annotation = "1.9.1"
-glide = "4.16.0" # Glide kütüphanesi eklendi
+glide = "4.16.0"
+firebaseStorage = "21.0.1" # Glide kütüphanesi eklendi
 
 [libraries]
 navigation-safe-args-gradle-plugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigationSafeArgs" }
@@ -49,6 +50,7 @@ androidx-annotation = { group = "androidx.annotation", name = "annotation", vers
 # Glide kütüphanesi eklendi
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
+firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebaseStorage" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
