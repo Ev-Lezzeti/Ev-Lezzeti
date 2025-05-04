@@ -5,7 +5,7 @@ import java.io.Serializable
 data class Yemek(
     var mutfakId:String? ="",
     var yemekId:String? ="",
-    val yemekAyrinti:String? ="",
+    val yemekDetay:String? ="",
     val yemekFiyat:String? ="",
     val yemekAd:String?="",
     val yemekResim:String?=""

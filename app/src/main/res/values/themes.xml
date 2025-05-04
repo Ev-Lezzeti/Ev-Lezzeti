@@ -10,6 +10,7 @@
 
     <!-- Bottom Navigation tema ayarları -->
     <style name="BottomNavigationTheme" parent="Widget.Material3.BottomNavigationView">
-        <item name="android:background">@drawable/bottom_nav_background</item>
+        <item name="android:background">@drawable/nav_home_item</item>
     </style>
+
 </resources>

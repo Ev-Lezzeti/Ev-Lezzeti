@@ -1,4 +1,4 @@
-package com.example.evlezzeti.ui.fragment
+package com.example.evlezzeti.ui.fragment.menu
 
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.evlezzeti.R
@@ -15,12 +16,13 @@ import com.example.evlezzeti.ui.adapter.KategoriAdapter
 import com.example.evlezzeti.ui.adapter.MutfakAdapter
 import com.example.evlezzeti.ui.adapter.OneriAdapter
 import com.example.evlezzeti.ui.viewmodel.BottomNavMenuViewModel
+import com.example.evlezzeti.ui.viewmodel.MutfakDetayViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class BottomNavMenuFragment : Fragment() {
     private lateinit var binding: FragmentBottomNavMenuBinding
-    private val viewModel: BottomNavMenuViewModel by viewModels()
+    private lateinit var viewModel: BottomNavMenuViewModel
     private lateinit var mutfakAdapter: MutfakAdapter
 
     override fun onCreateView(
@@ -43,16 +45,6 @@ class BottomNavMenuFragment : Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        // Fragment tekrar görünür olduğunda, veriler yüklendiyse ancak filtrelenmiş liste boşsa
-        // verileri yeniden göster
-        if (viewModel.filtrelenmisListe.value.isNullOrEmpty() && !viewModel.mutfakListe.value.isNullOrEmpty()) {
-            Log.d("Fragment", "onResume: Veriler yüklü ancak gösterilmiyor, yeniden sıralama yapılıyor")
-            viewModel.siralamaYap(BottomNavMenuViewModel.SiralamaTipi.YILDIZ_PUANI)
-        }
-    }
 
     private fun setupFilterChips() {
         // Varsayılan olarak yıldız chip'ini seçili yap
@@ -89,34 +81,37 @@ class BottomNavMenuFragment : Fragment() {
             }
         }
 
-        // Filtrelenmiş listeyi gözlemle
         viewModel.filtrelenmisListe.observe(viewLifecycleOwner) { filtrelenmisListe ->
             Log.d("Fragment", "Filtrelenmiş liste güncellendi: ${filtrelenmisListe?.size}")
 
-            // Filtrelenmiş liste boş değilse adapter'ı güncelle
-            if (!filtrelenmisListe.isNullOrEmpty()) {
-                if (::mutfakAdapter.isInitialized) {
-                    mutfakAdapter.mutfakListesi = filtrelenmisListe
-                    mutfakAdapter.notifyDataSetChanged()
-                } else {
-                    // İlk kez oluşturuluyorsa adapter'ı oluştur ve favori callback'i ekle
-                    mutfakAdapter = MutfakAdapter(requireContext(), filtrelenmisListe)
-                    mutfakAdapter.favoriteClickListener = { mutfak ->
-                        viewModel.favoriyeEkleVeyaCikar(mutfak)
-                    }
-                    mutfakAdapter.isFavoriteCheck = { mutfakId ->
-                        viewModel.isFavorite(mutfakId)
-                    }
-                    mutfakAdapter.itemClickListener = {
-                        val bundle = Bundle().apply {
-                            putSerializable("mutfak", it)
-                        }
-                        findNavController().navigate(R.id.action_bottomNavMenuFragment_to_mutfakDetayFragment, bundle)
-                    }
-                    binding.mutfakAdapter = mutfakAdapter
+            if (::mutfakAdapter.isInitialized) {
+                // Listeyi güncelle
+                mutfakAdapter.mutfakListesi = filtrelenmisListe
+                mutfakAdapter.notifyDataSetChanged()
+            } else {
+                // Adapter'ı ilk kez oluştur
+                mutfakAdapter = MutfakAdapter(requireContext(), filtrelenmisListe)
+                mutfakAdapter.favoriteClickListener = { mutfak ->
+                    viewModel.favoriyeEkleVeyaCikar(mutfak)
                 }
+                mutfakAdapter.isFavoriteCheck = { mutfakId ->
+                    viewModel.isFavorite(mutfakId)
+                }
+                mutfakAdapter.itemClickListener = {
+                    val bundle = Bundle().apply {
+                        putSerializable("mutfak", it)
+                    }
+                    findNavController().navigate(R.id.action_bottomNavMenuFragment_to_mutfakDetayFragment, bundle)
+                }
+                binding.mutfakAdapter = mutfakAdapter
+            }
+
+            // Ek olarak: adapter boş listeyle de oluşturulmalı (her zaman null değil)
+            if (filtrelenmisListe.isNullOrEmpty()) {
+                Log.d("Fragment", "Uyarı: filtrelenmiş liste BOŞ.")
             }
         }
+
 
         // Kategori listesini gözlemle
         viewModel.kategoriListe.observe(viewLifecycleOwner) { kategoriListesi ->
@@ -134,5 +129,11 @@ class BottomNavMenuFragment : Fragment() {
                 Log.d("Fragment", "Öneri listesi güncellendi: ${oneriListesi.size}")
             }
         }
+    }
+    //Direkt viewmodel Kullanamadigimiz icin burası sart
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel: BottomNavMenuViewModel by viewModels()
+        viewModel = tempViewModel
     }
 }
