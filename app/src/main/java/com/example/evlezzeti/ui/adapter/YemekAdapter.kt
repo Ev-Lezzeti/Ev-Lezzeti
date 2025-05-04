@@ -42,8 +42,9 @@ class YemekAdapter(var mContext: Context, var yemekListesi: List<Yemek>)
 
         h.yemekNesne = yemek
 
+        //Yemeklerin görsellerinin, yemekResim verisinde göre degismesini sağlıyor
         h.imageViewYemekResim.setImageResource(
-            mContext.resources.getIdentifier(yemek.yemekResim,"drawable",mContext.packageName))
+           mContext.resources.getIdentifier(yemek.yemekResim,"drawable",mContext.packageName))
 
         holder.tasarim.root.setOnClickListener{
             itemClickListener?.invoke(yemek)

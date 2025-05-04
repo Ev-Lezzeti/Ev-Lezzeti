@@ -8,6 +8,9 @@
         <variable
             name="mutfakNesne"
             type="com.example.evlezzeti.data.entity.Mutfak" />
+        <variable
+            name="yemekAdapter"
+            type="com.example.evlezzeti.ui.adapter.YemekAdapter" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -18,14 +21,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#FFFFFF"
-            tools:context=".ui.fragment.MutfakDetayFragment">
+            tools:context=".ui.fragment.menu.MutfakDetayFragment">
 
             <!-- Turuncu Üst Bar -->
             <View
                 android:id="@+id/viewTuruncuBar"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:background="#FF7E1F"
+                android:background="@color/anaRenk"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -36,27 +39,12 @@
 
             <!-- Arama Kutusu -->
 
-            <TextView
-                android:id="@+id/textViewMutfakIsmiBar"
-                style="@style/GenelTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@{mutfakNesne.mutfakAd}"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="27dp"
-                tools:text="Anadolu Mutfağı" />
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewArama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 app:cardCornerRadius="24dp"
                 app:cardElevation="4dp"
@@ -101,6 +89,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:outlineAmbientShadowColor="@color/anaRenk"
+                android:outlineSpotShadowColor="@color/anaRenk"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -117,8 +107,8 @@
                         android:id="@+id/imageViewMutfak"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
+                        android:foreground="@drawable/mutfak_resim"
                         android:scaleType="centerCrop"
-                        android:background="@color/anaRenk"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:src="@drawable/mutfak_resim" />
@@ -143,7 +133,7 @@
                     <TextView
                         android:id="@+id/textViewKonum"
                         style="@style/KucukTextStyle"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="4dp"
@@ -162,7 +152,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:background="#8BC34A"
+                        android:background="#FFA12F"
                         android:orientation="horizontal"
                         android:padding="8dp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -171,6 +161,8 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
+                            android:background="@color/primary_transparent"
+                            android:backgroundTint="@color/primary_transparent"
                             android:src="@drawable/star"
                             app:tint="#FFFFFF" />
 
@@ -180,18 +172,20 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
+                            android:background="@color/ikinciRenk"
+                            android:backgroundTint="@color/ikinciRenk"
                             android:text="@{mutfakNesne.mutfakPuan}"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/white"
                             android:textSize="16sp"
-                            android:textStyle="bold"
-                            tools:text="3.6" />
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
+                            android:backgroundTint="@color/ikinciRenk"
                             android:text="(1+)"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/white"
                             android:textSize="12sp" />
                     </LinearLayout>
 
@@ -240,6 +234,7 @@
                 android:orientation="vertical"
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
+                android:adapter="@{yemekAdapter}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

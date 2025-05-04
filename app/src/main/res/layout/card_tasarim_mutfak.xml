@@ -12,14 +12,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="7dp"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/tasarimCardView"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_margin="5dp"
-            app:cardCornerRadius="15dp">
+            android:layout_height="270dp"
+            android:layout_margin="4dp"
+            android:elevation="8dp"
+            android:outlineAmbientShadowColor="@color/anaRenk"
+            android:outlineSpotShadowColor="@color/anaRenk"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:cardMaxElevation="2dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -110,6 +116,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/anaRenk"
+                    android:padding="2dp"
+                    app:cardBackgroundColor="@color/anaRenk"
+                    app:cardCornerRadius="8dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView11">
 
@@ -121,7 +131,10 @@
                             style="@style/KucukTextStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{mutfakNesne.mutfakIndirimTag}" />
+                            android:background="@color/anaRenk"
+                            android:padding="3dp"
+                            android:text="@{mutfakNesne.mutfakIndirimTag}"
+                            android:textColor="@color/white" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>

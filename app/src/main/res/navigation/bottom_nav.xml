@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/bottomNavMenuFragment"
-        android:name="com.example.evlezzeti.ui.fragment.BottomNavMenuFragment"
+        android:name="com.example.evlezzeti.ui.fragment.menu.BottomNavMenuFragment"
         android:label="BottomNavMenuFragment"
         tools:layout="@layout/fragment_bottom_nav_menu">
 
@@ -27,7 +27,7 @@
         tools:layout="@layout/fragment_bottom_nav_profil"/>
     <fragment
         android:id="@+id/mutfakDetayFragment"
-        android:name="com.example.evlezzeti.ui.fragment.MutfakDetayFragment"
+        android:name="com.example.evlezzeti.ui.fragment.menu.MutfakDetayFragment"
         android:label="MutfakDetayFragment" >
         <argument
             android:name="mutfak"

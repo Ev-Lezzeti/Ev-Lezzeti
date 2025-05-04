@@ -12,15 +12,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/card_shadow"
+        android:backgroundTint="@color/card_shadow"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/yemekCardView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
             android:layout_margin="5dp"
+            android:outlineAmbientShadowColor="@color/ikinciRenk"
+            android:outlineSpotShadowColor="@color/ikinciRenk"
             app:cardCornerRadius="15dp"
-            app:cardElevation="3dp"
+            app:cardElevation="5dp"
             app:cardPreventCornerOverlap="false">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,20 +33,18 @@
                 android:padding="0dp">
 
                 <!-- Yemek Resmi (Solda tamamen bitişik) -->
+
+                <!-- Yemek İsmi -->
                 <ImageView
                     android:id="@+id/imageViewYemekResim"
                     android:layout_width="120dp"
                     android:layout_height="0dp"
-                    android:scaleType="centerCrop"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginLeft="0dp"
-                    android:padding="0dp"
+                    android:scaleType="fitXY"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@drawable/mutfak_resim" />
+                    app:srcCompat="@drawable/mutfak_resim" />
 
-                <!-- Yemek İsmi -->
                 <TextView
                     android:id="@+id/textViewYemekAdi"
                     style="@style/GenelTextStyle"
@@ -54,6 +56,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="@{yemekNesne.yemekAd}"
+                    android:textColorHint="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/textViewYemekFiyat"
@@ -72,9 +75,9 @@
                     android:layout_marginEnd="8dp"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:text="@{yemekNesne.yemekAyrinti}"
+                    android:text="@{yemekNesne.yemekDetay}"
                     android:textSize="14sp"
-                    app:layout_constraintEnd_toStartOf="@+id/fabSepeteEkle"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewYemekFiyat"
                     app:layout_constraintStart_toEndOf="@+id/imageViewYemekResim"
                     app:layout_constraintTop_toBottomOf="@+id/textViewYemekAdi"
                     tools:text="Dana kıyma, soğan, sarımsak, baharatlar, ekmek içi, maydanoz" />
@@ -91,26 +94,10 @@
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewYemekAdi"
                     tools:text="₺85.00" />
 
                 <!-- Sepete Ekle Butonu (+) -->
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/fabSepeteEkle"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginEnd="16dp"
-                    android:clickable="true"
-                    android:contentDescription="Sepete Ekle"
-                    android:focusable="true"
-                    app:fabCustomSize="28dp"
-                    app:fabSize="mini"
-                    app:layout_constraintBottom_toBottomOf="@+id/textViewYemekIcindekiler"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textViewYemekIcindekiler"
-                    app:maxImageSize="16dp"
-                    app:srcCompat="@android:drawable/ic_input_add"
-                    app:tint="@android:color/white" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

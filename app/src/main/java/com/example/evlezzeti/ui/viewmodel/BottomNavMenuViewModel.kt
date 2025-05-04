@@ -45,10 +45,13 @@ class BottomNavMenuViewModel @Inject constructor (var rep : Repository): ViewMod
     private var aktifSiralama = SiralamaTipi.YILDIZ_PUANI
 
     init {
-        mutfakYukle()
-        kategoriYukle()
-        oneriYukle()
+        if (mutfakListe.value.isNullOrEmpty()) {
+            mutfakYukle()
+            kategoriYukle()
+            oneriYukle()
+        }
     }
+
 
     private fun mutfakYukle() {
         _yukleniyor.value = true
