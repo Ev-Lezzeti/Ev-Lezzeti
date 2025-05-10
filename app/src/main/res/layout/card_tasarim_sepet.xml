@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="sepetYemekNesne"
+            type="com.example.evlezzeti.data.entity.Sepet" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/sepetYemekCardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/white"
+            android:elevation="5dp"
+            android:outlineAmbientShadowColor="@color/ikinciRenk"
+            android:outlineSpotShadowColor="@color/ikinciRenk"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp"
+            app:cardPreventCornerOverlap="false"
+            app:strokeColor="@color/ikinciRenk"
+            app:strokeWidth="2dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/mutfakAdtextView"
+                    style="@style/GenelTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{sepetYemekNesne.mutfakAd}"
+                    android:textColor="@color/anaRenk"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Kayseri Mutfağı" />
+
+                <TextView
+                    android:id="@+id/yemekAdtextView"
+                    style="@style/KucukTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/dosis_bold"
+                    android:text="@{sepetYemekNesne.yemekAd}"
+                    android:textColor="@color/anaRenk"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mutfakAdtextView"
+                    tools:text="Sarma" />
+
+                <TextView
+                    android:id="@+id/yemekNottextView"
+                    style="@style/KucukTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{sepetYemekNesne.yemekNot}"
+                    android:textColor="@color/ikinciRenk"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/yemekAdtextView"
+                    tools:text="Lütfen Tuz olmasın." />
+
+                <TextView
+                    android:id="@+id/yemekFiyattextView"
+                    style="@style/GenelTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{sepetYemekNesne.yemekFiyat}"
+                    android:textColor="@color/anaRenk"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5"
+                    tools:text="₺ 150" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:background="@color/ikinciRenk"
+                    android:backgroundTint="@color/ikinciRenk"
+                    android:backgroundTintMode="src_in"
+                    app:cardBackgroundColor="@color/bos"
+                    app:cardCornerRadius="70dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/yemekFiyattextView"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5"
+                    app:strokeColor="@color/ikinciRenk">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/yemekAzaltIV"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="8dp"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/white"
+                            android:foreground="@drawable/azalt_ozel"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/azalt_ozel"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/yemekAdetCV"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.5"
+                            app:tint="@color/anaRenk">
+
+                        </com.google.android.material.imageview.ShapeableImageView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/yemekAdetCV"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:background="@color/ikinciRenk"
+                            android:backgroundTint="@color/ikinciRenk"
+                            android:backgroundTintMode="src_in"
+                            app:cardBackgroundColor="@color/bos"
+                            app:cardCornerRadius="18dp"
+                            app:cardElevation="0dp"
+                            app:cardPreventCornerOverlap="false"
+                            app:cardUseCompatPadding="false"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/yemekArttirIV"
+                            app:layout_constraintStart_toEndOf="@id/yemekAzaltIV"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.5"
+                            app:strokeColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/yemekAdettextView"
+                                style="@style/GenelTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/ikinciRenk"
+                                android:backgroundTint="#7AFFA12F"
+                                android:gravity="center"
+                                android:text="@{sepetYemekNesne.yemekAdet}"
+                                android:textColor="@color/anaRenk"
+                                android:textSize="16sp"
+                                tools:text="3" />
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/yemekArttirIV"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/white"
+                            android:foreground="@drawable/add_ozel"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/azalt_ozel"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/yemekAdetCV"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.5"
+                            app:tint="@color/anaRenk">
+
+                        </com.google.android.material.imageview.ShapeableImageView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</layout>

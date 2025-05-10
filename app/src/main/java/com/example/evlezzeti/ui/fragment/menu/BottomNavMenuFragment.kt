@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.evlezzeti.R
@@ -16,7 +15,6 @@ import com.example.evlezzeti.ui.adapter.KategoriAdapter
 import com.example.evlezzeti.ui.adapter.MutfakAdapter
 import com.example.evlezzeti.ui.adapter.OneriAdapter
 import com.example.evlezzeti.ui.viewmodel.BottomNavMenuViewModel
-import com.example.evlezzeti.ui.viewmodel.MutfakDetayViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

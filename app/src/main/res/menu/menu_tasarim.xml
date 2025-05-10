@@ -8,7 +8,7 @@
         android:icon="@drawable/menu_resim"
         android:title="Mutfaklar" />
     <item
-        android:id="@+id/bottomNavSepetFragment"
+        android:id="@+id/bottomNavSepetToBottomNavMenuFragment"
         android:icon="@drawable/sepet_resim"
         android:title="Sepet" />
     <item

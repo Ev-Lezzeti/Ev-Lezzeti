@@ -3,6 +3,7 @@ package com.example.evlezzeti.data.entity
 import java.io.Serializable
 
 data class Yemek(
+    var mutfakAd:String? ="",
     var mutfakId:String? ="",
     var yemekId:String? ="",
     val yemekDetay:String? ="",

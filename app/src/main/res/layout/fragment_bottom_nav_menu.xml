@@ -43,7 +43,7 @@
                 android:fontFamily="@font/dosis_extrabold"
                 android:outlineAmbientShadowColor="@color/ikinciRenk"
                 android:outlineSpotShadowColor="@color/ikinciRenk"
-                android:shadowColor="@color/ikinciRenk"
+                android:shadowColor="@color/light_gray"
                 android:shadowDx="5"
                 android:shadowDy="5"
                 android:shadowRadius="5"

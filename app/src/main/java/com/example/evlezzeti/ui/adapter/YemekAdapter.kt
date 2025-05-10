@@ -5,12 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.evlezzeti.R
-import com.example.evlezzeti.data.entity.Mutfak
 import com.example.evlezzeti.data.entity.Yemek
-import com.example.evlezzeti.databinding.CardTasarimMutfakBinding
 import com.example.evlezzeti.databinding.CardTasarimYemekBinding
+import com.example.evlezzeti.ui.fragment.menu.MutfakDetayFragmentDirections
 
 class YemekAdapter(var mContext: Context, var yemekListesi: List<Yemek>)
     : RecyclerView.Adapter<YemekAdapter.CardTasarimTutucu>() {
@@ -48,6 +48,11 @@ class YemekAdapter(var mContext: Context, var yemekListesi: List<Yemek>)
 
         holder.tasarim.root.setOnClickListener{
             itemClickListener?.invoke(yemek)
+        }
+
+        h.yemekCardView.setOnClickListener {
+            val gecis = MutfakDetayFragmentDirections.mutfakDetayToYemekDetay(yemek = yemek)
+            Navigation.findNavController(it).navigate(gecis)
         }
 
 
