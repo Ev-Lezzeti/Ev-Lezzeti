@@ -16,10 +16,14 @@
             app:destination="@id/mutfakDetayFragment" />
     </fragment>
     <fragment
-        android:id="@+id/bottomNavSepetFragment"
+        android:id="@+id/bottomNavSepetToBottomNavMenuFragment"
         android:name="com.example.evlezzeti.ui.fragment.BottomNavSepetFragment"
         android:label="BottomNavSepetFragment"
-        tools:layout="@layout/fragment_bottom_nav_sepet"/>
+        tools:layout="@layout/fragment_bottom_nav_sepet">
+        <action
+            android:id="@+id/action_bottomNavSepetFragment_to_bottomNavMenuFragment"
+            app:destination="@id/bottomNavMenuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/bottomNavProfilFragment"
         android:name="com.example.evlezzeti.ui.fragment.BottomNavProfilFragment"
@@ -32,6 +36,18 @@
         <argument
             android:name="mutfak"
             app:argType="com.example.evlezzeti.data.entity.Mutfak" />
+        <action
+            android:id="@+id/mutfakDetay_to_YemekDetay"
+            app:destination="@id/yemekDetayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/yemekDetayFragment"
+        android:name="com.example.evlezzeti.ui.fragment.menu.YemekDetayFragment"
+        android:label="fragment_yemek_detay"
+        tools:layout="@layout/fragment_yemek_detay" >
+        <argument
+            android:name="yemek"
+            app:argType="com.example.evlezzeti.data.entity.Yemek" />
     </fragment>
 
 </navigation>

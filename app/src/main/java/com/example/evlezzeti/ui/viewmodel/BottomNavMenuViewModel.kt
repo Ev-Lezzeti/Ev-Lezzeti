@@ -3,16 +3,11 @@ package com.example.evlezzeti.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.evlezzeti.data.entity.Kategori
 import com.example.evlezzeti.data.entity.Mutfak
 import com.example.evlezzeti.data.entity.Oneri
 import com.example.evlezzeti.data.repo.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel

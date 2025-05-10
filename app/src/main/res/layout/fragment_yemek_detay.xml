@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="yemekNesne"
+            type="com.example.evlezzeti.data.entity.Yemek" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.menu.YemekDetayFragment" >
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:background="@color/anaRenk"
+            android:backgroundTint="@color/anaRenk"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/yemekMaterialCardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="80dp"
+            android:outlineAmbientShadowColor="@color/anaRenk"
+            android:outlineSpotShadowColor="@color/anaRenk"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:outlineAmbientShadowColor="@color/anaRenk"
+                android:outlineSpotShadowColor="@color/anaRenk"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="250dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    app:cardCornerRadius="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/ikinciRenk"
+                    app:strokeWidth="2dp">
+
+                    <ImageView
+                        android:id="@+id/imageViewYemek"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/sarma_resmi">
+
+                    </ImageView>
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/textViewYemekDetay"
+                    style="@style/KucukTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="@{yemekNesne.yemekDetay}"
+                    android:textAlignment="center"
+                    android:textColor="@color/anaRenk"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardView"
+                    tools:text="Pirin, Salça vs." />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabArttir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    app:tint="@color/white"
+                    android:src="@drawable/add_ozel"
+                    app:backgroundTint="@color/anaRenk"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textViewAdet"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewYemekDetay"
+                    app:layout_constraintVertical_bias="0.09" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabAzalt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    app:tint="@color/white"
+                    android:src="@drawable/azalt_ozel"
+                    app:backgroundTint="@color/anaRenk"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewAdet"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewYemekDetay"
+                    app:layout_constraintVertical_bias="0.09" />
+
+                <TextView
+                    android:id="@+id/textViewAdet"
+                    style="@style/GenelTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textColor="@color/anaRenk"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/fabArttir"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/fabAzalt"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewYemekDetay"
+                    app:layout_constraintVertical_bias="0.118" />
+
+                <TextView
+                    android:id="@+id/textViewFiyat"
+                    style="@style/GenelTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="@{yemekNesne.yemekFiyat}"
+                    android:textColor="@color/anaRenk"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewAdet"
+                    tools:text="₺ 100" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/siparisNotuInputLayout"
+                    style="@style/TextInputStyle"
+                    android:layout_width="0dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="24dp"
+                    android:outlineAmbientShadowColor="@color/anaRenk"
+                    android:outlineSpotShadowColor="@color/anaRenk"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewFiyat">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/siparisNotuEditText"
+                        style="@style/KucukTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Sipariş Notu Ekleyebilirsiniz!!"
+                        android:outlineSpotShadowColor="@color/anaRenk"
+                        android:textAlignment="viewStart" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sepeteEkleButton"
+            style="@style/ButtonStyle"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:height="50dp"
+            android:text="Sepete Ekle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/yemekMaterialCardView"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp" />
+
+        <TextView
+            android:id="@+id/textViewYemekAd"
+            style="@style/GenelTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@color/bos"
+            android:backgroundTint="@color/bos"
+            android:text="@{yemekNesne.yemekAd}"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/view"
+            tools:text="Sarma" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

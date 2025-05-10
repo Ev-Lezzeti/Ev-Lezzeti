@@ -28,5 +28,27 @@ class BottomNavActivity : AppCompatActivity() {
         // BottomNav icin kurulum
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         NavigationUI.setupWithNavController(binding.bottomNavigationView,navHostFragment.navController)
+
+        //Diger bottomNavFragment'larda gezerken geri donus yaptiginde ilk baslangic fragmentina donuyor
+        val navController = navHostFragment.navController
+
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.bottomNavMenuFragment -> {
+                    navController.navigate(R.id.bottomNavMenuFragment)
+                    true
+                }
+                R.id.bottomNavSepetToBottomNavMenuFragment -> {
+                    navController.navigate(R.id.bottomNavSepetToBottomNavMenuFragment)
+                    true
+                }
+                R.id.bottomNavProfilFragment -> {
+                    navController.navigate(R.id.bottomNavProfilFragment)
+                    true
+                }
+                else -> false
+            }
+        }
+
     }
 }
