@@ -5,20 +5,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.Navigation
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.evlezzeti.R
 import com.example.evlezzeti.databinding.FragmentBottomNavSepetBinding
 import com.example.evlezzeti.ui.adapter.SepetAdapter
 import com.example.evlezzeti.ui.viewmodel.SharedSepetViewModel
 import androidx.navigation.findNavController
+import com.example.evlezzeti.ui.viewmodel.BottomNavSepetViewModel
+import com.example.evlezzeti.ui.viewmodel.SharedKullaniciViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BottomNavSepetFragment : Fragment() {
     private lateinit var binding: FragmentBottomNavSepetBinding
-    private val sharedViewModel: SharedSepetViewModel by activityViewModels()
+    private lateinit var viewModel: BottomNavSepetViewModel
+    private val sharedSepetViewModel: SharedSepetViewModel by activityViewModels()
+    private val sharedKullaniciViewModel: SharedKullaniciViewModel by activityViewModels()
+    private lateinit var kullaniciId :String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,10 +38,13 @@ class BottomNavSepetFragment : Fragment() {
         binding.sepetYemekRV.layoutManager = LinearLayoutManager(requireContext())
 
         //Sepete ekleyip Kaydettigimiz yemekleri burdan alıyoruz
-        val sepetListesi = sharedViewModel.sepetListesi
-        binding.sepetYemekAdapter = SepetAdapter(requireContext(), sepetListesi,sharedViewModel)
-        sharedViewModel.toplamFiyat.observe(viewLifecycleOwner) { toplam ->
+        val sepetListesi = sharedSepetViewModel.sepetListesi
+        binding.sepetYemekAdapter = SepetAdapter(requireContext(), sepetListesi,sharedSepetViewModel)
+        sharedSepetViewModel.toplamFiyat.observe(viewLifecycleOwner) { toplam ->
             binding.toplamFiyatTextView.text = "Toplam ₺%.2f".format(toplam)
+        }
+        sharedKullaniciViewModel.kullaniciId.observe(viewLifecycleOwner){//KullaniciId ile adres var mi
+            kullaniciId = it
         }
 
 
@@ -46,13 +57,14 @@ class BottomNavSepetFragment : Fragment() {
         binding.sepetTemizleButton.setOnClickListener {//Yemekleri sepetten silme
             Snackbar.make(it,"Sepeti temizlemek istiyor musunuz ?",Snackbar.LENGTH_LONG)
                 .setAction("Evet"){
-                    sharedViewModel.sepetListeTemizle()
-                    sharedViewModel.yemekFiyatlariTemizle()
+                    sharedSepetViewModel.sepetListeTemizle()
+                    sharedSepetViewModel.yemekFiyatlariTemizle()
+                    sharedSepetViewModel.toplamFiyatGuncelle(0.0)
                     sepetGorunumGuncelle(false)
                 }
             .show()
         }
-        sharedViewModel.toplamFiyat.observe(viewLifecycleOwner){//Burada eger sepet bossa fragment eski haline gelmesi icin
+        sharedSepetViewModel.toplamFiyat.observe(viewLifecycleOwner){//Burada eger sepet bossa fragment eski haline gelmesi icin
             if (it == 0.0){
                 sepetGorunumGuncelle(false)
             }
@@ -61,6 +73,23 @@ class BottomNavSepetFragment : Fragment() {
 
             }
         }
+
+        //Sepeti onayladiktan sonra Konum kontrolu burada
+        binding.sepetOnaylaButton.setOnClickListener { view ->
+            sharedKullaniciViewModel.kullaniciId.observe(viewLifecycleOwner) { kullaniciId ->
+                viewModel.kullaniciAdresKontrolWithCallback(kullaniciId) { durum ->
+
+                    if (durum) {// Adres varsa, işleme devam et
+                        Toast.makeText(requireContext(), "Adres Kayıtlı", Toast.LENGTH_SHORT).show()
+                    } else { //Adres yoksa haritaya gecis
+                        Toast.makeText(requireContext(), "Adres Yok", Toast.LENGTH_SHORT).show()
+                        view.findNavController().navigate(R.id.sepetFragmentToHaritaIslemleriFragment)
+                    }
+                }
+            }
+        }
+
+
 
         return binding.root
     }
@@ -89,5 +118,11 @@ class BottomNavSepetFragment : Fragment() {
             binding.sepetinBosButton.visibility = View.VISIBLE
         }
 
+    }
+    //Direkt viewmodel Kullanamadigimiz icin burasi sart
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel: BottomNavSepetViewModel by viewModels()
+        viewModel = tempViewModel
     }
 }

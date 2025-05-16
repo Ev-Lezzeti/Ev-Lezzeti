@@ -28,7 +28,6 @@ class BottomNavMenuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_bottom_nav_menu, container, false)
-
         // Xml'de kullanmak için fragment ve viewModel'i bağla
         binding.bottomNavMenuFragment = this
         binding.viewModel = viewModel
