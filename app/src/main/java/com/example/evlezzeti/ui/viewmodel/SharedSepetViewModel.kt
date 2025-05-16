@@ -29,6 +29,10 @@ class SharedSepetViewModel :ViewModel(){
     fun hesaplaToplamFiyat() {
         _toplamFiyat.value = _fiyat.sum()
     }
+    fun toplamFiyatGuncelle(yeniFiyat: Double) {
+        _toplamFiyat.value = yeniFiyat
+
+    }
 
 
     fun sepetEkle(sepet:Sepet) {

@@ -11,6 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="match_parent"
         tools:context=".ui.fragment.menu.YemekDetayFragment" >
 
@@ -25,6 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
+            android:background="@color/white"
             android:id="@+id/yemekMaterialCardView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -40,6 +42,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint1"
+                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:outlineAmbientShadowColor="@color/anaRenk"

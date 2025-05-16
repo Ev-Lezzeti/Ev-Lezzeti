@@ -25,6 +25,9 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class GirisYapFragment : Fragment() {
@@ -107,7 +110,8 @@ class GirisYapFragment : Fragment() {
                     findNavController().navigate(R.id.girisYapToBottomNav)
                     val intent = Intent(requireContext(), BottomNavActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-
+                    intent.putExtra("kullaniciId", auth.currentUser!!.uid)
+                    intent.putExtra("kullaniciEPosta",auth.currentUser!!.email)
                     startActivity(intent)
                 } else {
                     Toast.makeText(requireContext(), "Giriş başarısız: ${task.exception?.message}", Toast.LENGTH_LONG).show()
@@ -131,6 +135,8 @@ class GirisYapFragment : Fragment() {
                         Toast.makeText(requireContext(), "Giriş başarılı!", Toast.LENGTH_SHORT).show()
                         val intent = Intent(requireContext(), BottomNavActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        intent.putExtra("kullaniciId", auth.currentUser!!.uid)
+                        intent.putExtra("kullaniciEPosta",auth.currentUser!!.email)
                         startActivity(intent)
                     }
                     .addOnFailureListener { e ->

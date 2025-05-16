@@ -22,6 +22,7 @@ class SplashScreenFragment : Fragment() {
     private lateinit var binding: FragmentSplashScreenBinding
     private lateinit var auth : FirebaseAuth
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,15 +35,15 @@ class SplashScreenFragment : Fragment() {
         // ImageView'lara animasyonları ata
         binding.splashImageGri.startAnimation(animation1)
         binding.splashImageRenkli.startAnimation(animation2)
-
         auth = FirebaseAuth.getInstance()
 
         if (auth.currentUser != null){
-            Toast.makeText(requireContext(),"Kullanıcı Girişi : ${auth.currentUser?.email} ",Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(),"Kullanıcı Girişi : ${auth.currentUser?.email}",Toast.LENGTH_LONG).show()
             view?.let { Navigation.findNavController(it).navigate(R.id.splashToBottomNav) }
             val intent = Intent(requireContext(), BottomNavActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-
+            intent.putExtra("kullaniciId", auth.currentUser!!.uid)
+            intent.putExtra("kullaniciEPosta",auth.currentUser!!.email)
             startActivity(intent)
         }
         else {

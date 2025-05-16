@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_bottomNavSepetFragment_to_bottomNavMenuFragment"
             app:destination="@id/bottomNavMenuFragment" />
+        <action
+            android:id="@+id/sepetFragmentToHaritaIslemleriFragment"
+            app:destination="@id/haritaIslemleriFragment" />
     </fragment>
     <fragment
         android:id="@+id/bottomNavProfilFragment"
@@ -49,5 +52,10 @@
             android:name="yemek"
             app:argType="com.example.evlezzeti.data.entity.Yemek" />
     </fragment>
+    <fragment
+        android:id="@+id/haritaIslemleriFragment"
+        android:name="com.example.evlezzeti.ui.fragment.HaritaIslemleriFragment"
+        android:label="fragment_harita_islemleri"
+        tools:layout="@layout/fragment_harita_islemleri" />
 
 </navigation>

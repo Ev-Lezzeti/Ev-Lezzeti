@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="haritaIslemleriFragment"
+            type="com.example.evlezzeti.ui.fragment.HaritaIslemleriFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.fragment.HaritaIslemleriFragment">
+
+        <TextView
+            android:id="@+id/textViewKonumBilgisi"
+            style="@style/KucukTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="@color/anaRenk"
+            app:layout_constraintBottom_toTopOf="@+id/buttonKonumAl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/buttonKonumAl"
+            style="@style/ButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp"
+            android:text="Konumumu Al"
+            app:layout_constraintBottom_toTopOf="@+id/adresBasligiInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/adresBasligiInputLayout"
+            style="@style/TextInputStyle"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:outlineAmbientShadowColor="@color/anaRenk"
+            android:outlineSpotShadowColor="@color/anaRenk"
+            app:endIconContentDescription="Konum Seç"
+            app:endIconDrawable="@drawable/konum_baslik"
+            app:endIconMode="custom"
+            app:endIconTint="@color/anaRenk"
+            app:layout_constraintBottom_toTopOf="@+id/adresBinaNoInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/adresBasligiEditText"
+                style="@style/KucukTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Adres Başlığı"
+                android:outlineSpotShadowColor="@color/anaRenk"
+                android:text="Evim"
+                android:textAlignment="viewStart" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/adresBinaNoInputLayout"
+            style="@style/TextInputStyle"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:outlineAmbientShadowColor="@color/anaRenk"
+            android:outlineSpotShadowColor="@color/anaRenk"
+            app:endIconContentDescription="Konum Seç"
+            app:layout_constraintBottom_toTopOf="@+id/adresKatInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/adresBinaNoEditText"
+                style="@style/KucukTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Bina No/Apartman Adı"
+                android:outlineSpotShadowColor="@color/anaRenk"
+                android:textAlignment="viewStart" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/adresDaireNoInputLayout"
+            style="@style/TextInputStyle"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:outlineAmbientShadowColor="@color/anaRenk"
+            android:outlineSpotShadowColor="@color/anaRenk"
+            app:endIconContentDescription="Konum Seç"
+            app:layout_constraintBottom_toTopOf="@+id/adresTelefonNoInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/adresKatInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/adresDaireNoEditText"
+                style="@style/KucukTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Daire No"
+                android:inputType="number"
+                android:outlineSpotShadowColor="@color/anaRenk"
+                android:textAlignment="viewStart" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/adresKatInputLayout"
+            style="@style/TextInputStyle"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:outlineAmbientShadowColor="@color/anaRenk"
+            android:outlineSpotShadowColor="@color/anaRenk"
+            app:endIconContentDescription="Konum Seç"
+            app:layout_constraintBottom_toTopOf="@+id/adresTelefonNoInputLayout"
+            app:layout_constraintEnd_toStartOf="@+id/adresDaireNoInputLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/adresKatEditText"
+                style="@style/KucukTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Kat"
+                android:inputType="number"
+                android:outlineSpotShadowColor="@color/anaRenk"
+                android:textAlignment="viewStart" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/adresTelefonNoInputLayout"
+            style="@style/TextInputStyle"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="0dp"
+            android:outlineAmbientShadowColor="@color/anaRenk"
+            android:outlineSpotShadowColor="@color/anaRenk"
+            app:endIconContentDescription="Konum Seç"
+            app:layout_constraintBottom_toTopOf="@+id/adresIsimInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/adresTelefonNoEditText"
+                style="@style/KucukTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="0538"
+                android:inputType="phone"
+                android:outlineSpotShadowColor="@color/anaRenk"
+                android:textAlignment="viewStart" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/adresIsimInputLayout"
+            style="@style/TextInputStyle"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="0dp"
+            android:outlineAmbientShadowColor="@color/anaRenk"
+            android:outlineSpotShadowColor="@color/anaRenk"
+            app:endIconContentDescription="Konum Seç"
+            app:layout_constraintBottom_toTopOf="@+id/buttonAdresKaydet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/adresIsimEditText"
+                style="@style/KucukTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Fatma"
+                android:outlineSpotShadowColor="@color/anaRenk"
+                android:textAlignment="viewStart" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <FrameLayout
+            android:id="@+id/mapContainer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/bos"
+            android:backgroundTint="@color/bos"
+            android:foregroundTint="@color/bos"
+            android:translationZ="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/textViewKonumBilgisi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:foregroundGravity="center"
+                android:translationZ="10dp"
+                app:srcCompat="@drawable/konum_isareti" />
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/buttonAdresKaydet"
+            style="@style/ButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Adesimi Kaydet"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

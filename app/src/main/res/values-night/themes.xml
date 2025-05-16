@@ -6,7 +6,6 @@
         <item name="colorPrimary">@color/anaRenk</item>
         <item name="statusBarBackground">@color/white</item>
         <item name="statusBarForeground">@color/black</item>
-        <item name="android:background">@color/white</item>
 
     </style>
 </resources>

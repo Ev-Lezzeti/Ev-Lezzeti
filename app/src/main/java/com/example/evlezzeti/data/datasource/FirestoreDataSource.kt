@@ -1,5 +1,6 @@
 package com.example.evlezzeti.data.datasource
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.evlezzeti.data.entity.Kategori
 import com.example.evlezzeti.data.entity.Kullanici
@@ -10,18 +11,20 @@ import com.example.evlezzeti.data.entity.Yemek
 import com.google.firebase.firestore.CollectionReference
 
 
-class FirestoreDataSource (var mutfakCollection: CollectionReference,
-                           var kategoriCollection: CollectionReference,
-                           var oneriCollection: CollectionReference ,
-                           var usersCollection: CollectionReference,
-                            var yemekCollection: CollectionReference) {
+class FirestoreDataSource(
+    var mutfakCollection: CollectionReference,
+    var kategoriCollection: CollectionReference,
+    var oneriCollection: CollectionReference,
+    var usersCollection: CollectionReference,
+    var yemekCollection: CollectionReference,
+    var kullanicilarCollection: CollectionReference
+) {
 
     var kullanici = MutableLiveData<Kullanici>()
     var mutfakListe = MutableLiveData<List<Mutfak>>()
     var kategoriListe = MutableLiveData<List<Kategori>>()
     var oneriListe = MutableLiveData<List<Oneri>>()
     var yemekListe = MutableLiveData<List<Yemek>>()
-    var usersListe = MutableLiveData<List<Users>>()
     var otp = false
     var guncelleme = false
 
@@ -142,5 +145,39 @@ class FirestoreDataSource (var mutfakCollection: CollectionReference,
             }
         }
         return guncelleme
+    }
+    fun kullaniciKaydet (kullanici: Kullanici) {
+        val yeniKullanici = Kullanici("${kullanici.kullaniciId}",
+            "${kullanici.ePosta}",
+            "${kullanici.kullaniciTelefon}",
+            "${kullanici.kullaniciAd}",
+            "${kullanici.kullaniciAdress}",
+            "${kullanici.kullaniciEnlem}",
+            "${kullanici.kullaniciBoylam}",
+            "${kullanici.favoriler}")
+        kullanicilarCollection.document().set(yeniKullanici)
+    }
+
+    fun kullaniciAdresKontrol(kullaniciId: String, callback: (Boolean) -> Unit) {
+        if (kullaniciId != "Id Yok") {
+            kullanicilarCollection
+                .whereEqualTo("kullaniciId", kullaniciId)
+                .get()
+                .addOnSuccessListener { documents ->
+                    val bulundu = documents.any {
+                        val user = it.toObject(Kullanici::class.java)
+                        !user.kullaniciAdress.isNullOrEmpty()
+                    }
+                    Log.e("KullaniciAdresKontrol", "Adres bulundu mu: $bulundu")
+                    callback(bulundu)
+                }
+                .addOnFailureListener { error ->
+                    Log.e("KullaniciAdresKontrol", "Hata: ${error.message}")
+                    callback(false)
+                }
+        } else {
+            Log.e("KullaniciAdresKontrol", "Geçersiz ID")
+            callback(false)
+        }
     }
 }
