@@ -6,6 +6,7 @@ import com.example.evlezzeti.data.entity.Kategori
 import com.example.evlezzeti.data.entity.Kullanici
 import com.example.evlezzeti.data.entity.Mutfak
 import com.example.evlezzeti.data.entity.Oneri
+import com.example.evlezzeti.data.entity.Siparis
 import com.example.evlezzeti.data.entity.Users
 import com.example.evlezzeti.data.entity.Yemek
 import com.google.firebase.firestore.CollectionReference
@@ -17,7 +18,8 @@ class FirestoreDataSource(
     var oneriCollection: CollectionReference,
     var usersCollection: CollectionReference,
     var yemekCollection: CollectionReference,
-    var kullanicilarCollection: CollectionReference
+    var kullanicilarCollection: CollectionReference,
+    var siparislerCollection: CollectionReference
 ) {
 
     var kullanici = MutableLiveData<Kullanici>()
@@ -180,4 +182,27 @@ class FirestoreDataSource(
             callback(false)
         }
     }
+
+    fun kullaniciVerisiAl(kullaniciId: String, callback: (Kullanici?) -> Unit) {
+        kullanicilarCollection
+            .whereEqualTo("kullaniciId", kullaniciId)
+            .get()
+            .addOnSuccessListener { documents ->
+                if (!documents.isEmpty) {
+                    val user = documents.first().toObject(Kullanici::class.java)
+                    callback(user)
+                } else {
+                    callback(null)
+                    }
+            }
+            .addOnFailureListener {
+                callback(null)
+            }
+
+    }
+    fun siparisEkle(siparis: Siparis){
+        siparislerCollection.document().set(siparis)
+    }
+
+
 }

@@ -1,4 +1,4 @@
-package com.example.evlezzeti.ui.fragment
+package com.example.evlezzeti.ui.fragment.sepet
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -155,7 +155,7 @@ class HaritaIslemleriFragment : Fragment() ,OnMapReadyCallback{
 
 
     }
-    private fun latLngToAdres(latitude: Double, longitude: Double) {
+    private fun latLngToAdres(latitude: Double, longitude: Double) { //Alinan konum bilgisini adrese ceviriyor
         val geocoder = Geocoder(requireContext(), Locale.getDefault())
         try {
             val adresListesi = geocoder.getFromLocation(latitude, longitude, 1)

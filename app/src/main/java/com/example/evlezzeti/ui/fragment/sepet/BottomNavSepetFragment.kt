@@ -1,4 +1,4 @@
-package com.example.evlezzeti.ui.fragment
+package com.example.evlezzeti.ui.fragment.sepet
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -80,6 +80,7 @@ class BottomNavSepetFragment : Fragment() {
                 viewModel.kullaniciAdresKontrolWithCallback(kullaniciId) { durum ->
 
                     if (durum) {// Adres varsa, işleme devam et
+                        view.findNavController().navigate(R.id.bottomNavSepetToBottomNavMenuFragment_to_odemeFragment)
                         Toast.makeText(requireContext(), "Adres Kayıtlı", Toast.LENGTH_SHORT).show()
                     } else { //Adres yoksa haritaya gecis
                         Toast.makeText(requireContext(), "Adres Yok", Toast.LENGTH_SHORT).show()

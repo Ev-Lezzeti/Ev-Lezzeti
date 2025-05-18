@@ -6,6 +6,7 @@ import com.example.evlezzeti.data.entity.Kategori
 import com.example.evlezzeti.data.entity.Kullanici
 import com.example.evlezzeti.data.entity.Mutfak
 import com.example.evlezzeti.data.entity.Oneri
+import com.example.evlezzeti.data.entity.Siparis
 import com.example.evlezzeti.data.entity.Yemek
 
 class Repository (var fds:FirestoreDataSource)  {
@@ -27,6 +28,11 @@ class Repository (var fds:FirestoreDataSource)  {
     fun kullaniciAdresKontrol(kullaniciId: String, callback: (Boolean) -> Unit) {
         fds.kullaniciAdresKontrol(kullaniciId, callback)
     }
-
+    fun kullaniciAl(kullaniciId: String, callback: (Kullanici?) -> Unit) {
+        fds.kullaniciVerisiAl(kullaniciId, callback)
+    }
+    fun siparisEkle(siparis: Siparis){
+        fds.siparisEkle(siparis)
+    }
 
 }

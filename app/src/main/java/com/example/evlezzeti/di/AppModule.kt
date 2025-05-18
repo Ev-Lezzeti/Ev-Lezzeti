@@ -56,6 +56,13 @@ class AppModule {
     fun provideKullanicilarCollectionReference(): CollectionReference {
         return Firebase.firestore.collection("Kullanicilar")
     }
+    @Provides
+    @Singleton
+    @Named("Siparisler")
+    fun provideSiparislerCollectionReference(): CollectionReference {
+        return Firebase.firestore.collection("Siparisler")
+    }
+
 
     @Provides
     @Singleton
@@ -65,9 +72,10 @@ class AppModule {
         @Named("Oneriler") onerilerCollection: CollectionReference,
         @Named("users") usersCollection: CollectionReference,
         @Named("Yemekler") yemeklerCollection: CollectionReference,
-        @Named("Kullanicilar") kullanicilarCollection : CollectionReference
+        @Named("Kullanicilar") kullanicilarCollection : CollectionReference,
+        @Named("Siparisler") siparislerCollection : CollectionReference
     ): FirestoreDataSource {
-        return FirestoreDataSource(mutfakCollection, kategoriCollection, onerilerCollection , usersCollection , yemeklerCollection , kullanicilarCollection)
+        return FirestoreDataSource(mutfakCollection, kategoriCollection, onerilerCollection , usersCollection , yemeklerCollection , kullanicilarCollection, siparislerCollection)
     }
 
     @Provides

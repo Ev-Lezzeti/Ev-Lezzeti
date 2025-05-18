@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+    <variable
+        name="odemeFragment"
+        type="com.example.evlezzeti.ui.fragment.sepet.OdemeFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.fragment.sepet.OdemeFragment">
+
+        <TextView
+            android:id="@+id/textView19"
+            style="@style/GenelTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sipariş Onay"
+            android:textColor="@color/anaRenk"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/odemeAltBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView19">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingBottom="16dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/haritaMCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@color/white"
+                        android:outlineAmbientShadowColor="@color/anaRenk"
+                        android:outlineSpotShadowColor="@color/anaRenk"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardElevation="2dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:strokeColor="@color/gray">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white">
+
+                            <FrameLayout
+                                android:id="@+id/mapContainer"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:background="@color/bos"
+                                android:backgroundTint="@color/bos"
+                                android:foregroundTint="@color/bos"
+                                android:translationZ="10dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageView
+                                    android:id="@+id/imageView8"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:foregroundGravity="center"
+                                    android:translationZ="10dp"
+                                    app:srcCompat="@drawable/konum_isareti" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:id="@+id/textView20"
+                                style="@style/GenelTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Teslimat Adresi"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/mapContainer"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textViewAdres"
+                                style="@style/KucukTextStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Adres"
+                                android:textAlignment="center"
+                                android:textColor="@color/anaRenk"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/mapContainer"
+                                app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+                            <TextView
+                                android:id="@+id/textView22"
+                                style="@style/KucukTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginBottom="8dp"
+                                android:text="Tahmini Teslimat : 20-30 dk"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/mapContainer"
+                                app:layout_constraintTop_toBottomOf="@+id/textViewAdres" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/siparisOzetMCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@color/white"
+                        android:outlineAmbientShadowColor="@color/anaRenk"
+                        android:outlineSpotShadowColor="@color/anaRenk"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardElevation="2dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/haritaMCV"
+                        app:strokeColor="@color/gray">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white">
+
+                            <TextView
+                                android:id="@+id/textView24"
+                                style="@style/GenelTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Sipariş Özeti"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/view1"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="8dp"
+                                android:background="@color/gray"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/textView24" />
+
+                            <LinearLayout
+                                android:id="@+id/sepetOzetLinearLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="8dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/view1" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/odemeSekliMCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@color/white"
+                        android:outlineAmbientShadowColor="@color/anaRenk"
+                        android:outlineSpotShadowColor="@color/anaRenk"
+                        android:visibility="visible"
+                        app:cardElevation="2dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/siparisOzetMCV"
+                        app:strokeColor="@color/gray">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white">
+
+                            <RadioGroup
+                                android:id="@+id/odemeSecenekleriRadioGroup"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:orientation="vertical"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <RadioButton
+                                    android:id="@+id/radioKartlaOde"
+                                    style="@style/GenelTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:drawableStart="@drawable/odeme_kart"
+                                    android:padding="8dp"
+                                    android:text="  Kartla Öde"
+                                    android:textAlignment="textStart" />
+
+                                <RadioButton
+                                    android:id="@+id/radioKapidaOde"
+                                    style="@style/GenelTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:drawableStart="@drawable/odeme_kapida"
+                                    android:padding="8dp"
+                                    android:text="  Kapıda Öde"
+                                    android:textAlignment="viewStart" />
+                            </RadioGroup>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/kartBilgisiMCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="8dp"
+                        android:outlineAmbientShadowColor="@color/anaRenk"
+                        android:outlineSpotShadowColor="@color/anaRenk"
+                        android:visibility="gone"
+                        app:cardElevation="2dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/odemeSekliMCV">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:padding="8dp">
+
+                            <!-- Kart Sahibi -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/kartSahibiInputLayout"
+                                style="@style/TextInputStyle"
+                                android:layout_width="0dp"
+                                android:outlineAmbientShadowColor="@color/anaRenk"
+                                android:outlineSpotShadowColor="@color/anaRenk"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/kartSahibiEditText"
+                                    style="@style/KucukTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Kart Sahibi Adı"
+                                    android:textAlignment="viewStart" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- Kart Numarası -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/kartNumarasiInputLayout"
+                                style="@style/TextInputStyle"
+                                android:layout_width="0dp"
+                                android:layout_marginTop="8dp"
+                                android:outlineAmbientShadowColor="@color/anaRenk"
+                                android:outlineSpotShadowColor="@color/anaRenk"
+                                app:endIconMode="custom"
+                                app:endIconTint="@color/anaRenk"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/kartSahibiInputLayout">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/kartNumarasiEditText"
+                                    style="@style/KucukTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Kart Numarası"
+                                    android:inputType="number"
+                                    android:maxLength="19"
+                                    android:textAlignment="viewStart" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- Son Kullanma Tarihi -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/sonKullanmaInputLayout"
+                                style="@style/TextInputStyle"
+                                android:layout_width="0dp"
+                                android:layout_marginTop="8dp"
+                                android:outlineAmbientShadowColor="@color/anaRenk"
+                                android:outlineSpotShadowColor="@color/anaRenk"
+                                app:layout_constraintEnd_toStartOf="@id/cvvInputLayout"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/kartNumarasiInputLayout">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/sonKullanmaEditText"
+                                    style="@style/KucukTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="AA/YY"
+                                    android:inputType="text"
+                                    android:maxLength="5"
+                                    android:textAlignment="viewStart" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- CVV -->
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/cvvInputLayout"
+                                style="@style/TextInputStyle"
+                                android:layout_width="0dp"
+                                android:layout_marginTop="8dp"
+                                android:outlineAmbientShadowColor="@color/anaRenk"
+                                android:outlineSpotShadowColor="@color/anaRenk"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/sonKullanmaInputLayout"
+                                app:layout_constraintTop_toBottomOf="@id/kartNumarasiInputLayout">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/cvvEditText"
+                                    style="@style/KucukTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="CVV"
+                                    android:inputType="numberPassword"
+                                    android:maxLength="4"
+                                    android:textAlignment="viewStart" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/siparisNotuMCV"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/white"
+                        android:outlineAmbientShadowColor="@color/anaRenk"
+                        android:outlineSpotShadowColor="@color/anaRenk"
+                        app:cardElevation="2dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/kartBilgisiMCV">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/kuryeNotInputLayout"
+                                style="@style/TextInputStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:outlineAmbientShadowColor="@color/anaRenk"
+                                android:outlineSpotShadowColor="@color/anaRenk"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/kuryeNotEditText"
+                                    style="@style/KucukTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:hint="Kuryeye Not"
+                                    android:textAlignment="center" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/odemeAltBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:background="@color/anaRenk"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/textViewOdemeFiyat"
+                style="@style/GenelTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="150 ₺"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/buttonOdemeYap"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <Button
+                android:id="@+id/buttonOdemeYap"
+                style="@style/ButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/white"
+                android:text="Ödeme Yap"
+                android:textColor="@color/anaRenk"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textViewOdemeFiyat"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
