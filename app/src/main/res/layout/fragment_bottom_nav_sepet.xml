@@ -6,7 +6,7 @@
     <data>
         <variable
             name="bottomNavSepetFragment"
-            type="com.example.evlezzeti.ui.fragment.BottomNavSepetFragment" />
+            type="com.example.evlezzeti.ui.fragment.sepet.BottomNavSepetFragment" />
         <variable
             name="sepetYemekAdapter"
             type="com.example.evlezzeti.ui.adapter.SepetAdapter" />
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:background="@color/white"
         android:layout_height="match_parent"
-        tools:context=".ui.fragment.BottomNavSepetFragment">
+        tools:context=".ui.fragment.sepet.BottomNavSepetFragment">
 
         <TextView
             android:id="@+id/textView3"

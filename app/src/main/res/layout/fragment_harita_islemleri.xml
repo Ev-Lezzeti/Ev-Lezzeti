@@ -6,14 +6,14 @@
     <data>
         <variable
             name="haritaIslemleriFragment"
-            type="com.example.evlezzeti.ui.fragment.HaritaIslemleriFragment" />
+            type="com.example.evlezzeti.ui.fragment.sepet.HaritaIslemleriFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".ui.fragment.HaritaIslemleriFragment">
+        tools:context=".ui.fragment.sepet.HaritaIslemleriFragment">
 
         <TextView
             android:id="@+id/textViewKonumBilgisi"
