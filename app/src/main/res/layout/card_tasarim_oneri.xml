@@ -16,7 +16,6 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
-
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             app:cardCornerRadius="5dp"
@@ -37,7 +36,7 @@
                     android:layout_height="84dp"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/et_resim" />
+                    tools:src="@drawable/et_resim" />
 
                 <TextView
                     android:id="@+id/textView15"

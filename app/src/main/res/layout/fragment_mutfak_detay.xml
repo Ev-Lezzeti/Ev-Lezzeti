@@ -112,7 +112,6 @@
                         android:id="@+id/imageViewMutfak"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:foreground="@drawable/mutfak_resim"
                         android:scaleType="centerCrop"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
