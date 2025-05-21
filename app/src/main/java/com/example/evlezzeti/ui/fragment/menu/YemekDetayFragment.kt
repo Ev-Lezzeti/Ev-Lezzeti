@@ -7,16 +7,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.evlezzeti.R
 import com.example.evlezzeti.data.entity.Sepet
 import com.example.evlezzeti.databinding.FragmentYemekDetayBinding
 import com.example.evlezzeti.ui.viewmodel.SharedSepetViewModel
 import com.google.android.material.snackbar.Snackbar
-
+import com.google.firebase.storage.FirebaseStorage
 
 class YemekDetayFragment : Fragment() {
     private lateinit var binding: FragmentYemekDetayBinding
@@ -31,7 +33,6 @@ class YemekDetayFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_yemek_detay, container, false)
 
-
         //RV'den gelen yemek nesnesini burda aldık
         binding.yemekNesne = args.yemek
 
@@ -41,8 +42,9 @@ class YemekDetayFragment : Fragment() {
         binding.fabAzalt.setOnClickListener {  //Adet azaltma fonk.
             butonYemekSayiDurum("azalt")
         }
-        //Yemeğe göre resim kaynagi
-        binding.imageViewYemek.setImageResource(resources.getIdentifier(args.yemek.yemekResim, "drawable", requireContext().packageName))
+
+        // Firebase Storage'dan yemek resmini yükle
+        loadImageFromFirebase(args.yemek.yemekResim, binding.imageViewYemek)
 
         //Burada sepete ekleme islemleri
         binding.sepeteEkleButton.setOnClickListener {
@@ -76,12 +78,60 @@ class YemekDetayFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Firebase Storage'dan resim yükler
+     */
+    private fun loadImageFromFirebase(imageName: String?, imageView: ImageView) {
+        if (imageName.isNullOrEmpty()) {
+            // Eğer resim adı yoksa varsayılan resmi göster
+            imageView.setImageResource(R.drawable.default_image)
+            return
+        }
+
+        try {
+            // Firebase Storage referansı
+            val storageRef = FirebaseStorage.getInstance().reference
+
+            // "yemekler" klasöründeki resmi referans al
+            val imageRef = storageRef.child("yemekler/$imageName.jpg")
+
+            Log.d("FirebaseStorage", "Yemek Detay Resim yükleniyor: yemekler/$imageName.jpg")
+
+            // Resmin URL'sini al
+            imageRef.downloadUrl.addOnSuccessListener { uri ->
+                // Fragment hala yaşıyor mu kontrol et
+                if (isAdded && context != null) {
+                    // Glide ile resmi yükle
+                    Glide.with(requireContext())
+                        .load(uri)
+                        .placeholder(R.drawable.placeholder_image)
+                        .error(R.drawable.error_image)
+                        .into(imageView)
+
+                    Log.d("FirebaseStorage", "Yemek Detay Resim başarıyla yüklendi: $uri")
+                }
+            }.addOnFailureListener { exception ->
+                // Hata durumunda
+                Log.e("FirebaseStorage", "Yemek Detay Resim yükleme hatası: ${exception.message}", exception)
+
+                // Hata durumunda varsayılan resmi göster
+                if (isAdded && context != null) {
+                    imageView.setImageResource(R.drawable.default_image)
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("FirebaseStorage", "Yemek Detay Genel hata: ${e.message}", e)
+            if (isAdded && context != null) {
+                imageView.setImageResource(R.drawable.default_image)
+            }
+        }
+    }
+
     private fun yemekFiyatiAl(): Double {
         val fiyatStr = binding.yemekNesne!!.yemekFiyat.toString()
         val sadeceSayi = fiyatStr.replace(",", ".").filter { it.isDigit() || it == '.' }
         return sadeceSayi.toDoubleOrNull() ?: 0.00
     }
-
 
     private fun butonYemekSayiDurum(durum:String){
         if (durum == "arttir"){
@@ -110,5 +160,4 @@ class YemekDetayFragment : Fragment() {
             .toDouble()
         return yeniFiyat
     }
-
 }
