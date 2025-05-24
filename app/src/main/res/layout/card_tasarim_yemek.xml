@@ -47,7 +47,7 @@
 
                 <!-- Yemek İsmi -->
                 <TextView
-                    android:id="@+id/textViewYemekAdi"
+                    android:id="@+id/textViewMutfakAd"
                     style="@style/GenelTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
                     android:textSize="14sp"
                     app:layout_constraintEnd_toStartOf="@+id/textViewYemekFiyat"
                     app:layout_constraintStart_toEndOf="@+id/imageViewYemekResim"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewYemekAdi"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewMutfakAd"
                     tools:text="Dana kıyma, soğan, sarımsak, baharatlar, ekmek içi, maydanoz" />
 
                 <!-- Yemek Fiyat -->
@@ -95,7 +95,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewYemekAdi"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewMutfakAd"
                     tools:text="₺85.00" />
 
                 <!-- Sepete Ekle Butonu (+) -->

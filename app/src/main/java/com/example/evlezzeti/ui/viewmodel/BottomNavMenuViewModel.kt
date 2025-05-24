@@ -3,11 +3,15 @@ package com.example.evlezzeti.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.evlezzeti.data.entity.Kategori
 import com.example.evlezzeti.data.entity.Mutfak
 import com.example.evlezzeti.data.entity.Oneri
+import com.example.evlezzeti.data.entity.Siparis
 import com.example.evlezzeti.data.repo.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,6 +19,22 @@ class BottomNavMenuViewModel @Inject constructor (var rep : Repository): ViewMod
     var mutfakListe = MutableLiveData<List<Mutfak>>()
     var kategoriListe = MutableLiveData<List<Kategori>>()
     var oneriListe = MutableLiveData<List<Oneri>>()
+    private val _aktifSiparis = MutableLiveData<Siparis?>()
+    val aktifSiparis: LiveData<Siparis?> = _aktifSiparis
+
+    private val _hata = MutableLiveData<String?>()
+    val hata: LiveData<String?> = _hata
+
+    fun aktifSiparisAl(kullaniciId: String) {
+        rep.aktifSiparisAl(kullaniciId,
+            onSuccess = { siparis ->
+                _aktifSiparis.value = siparis
+            },
+            onFailure = { exception ->
+                _hata.value = exception.message
+            }
+        )
+    }
 
     // Arama için kullanılacak değişkenler
     private val _aramaMetni = MutableLiveData<String>("")
@@ -156,5 +176,22 @@ class BottomNavMenuViewModel @Inject constructor (var rep : Repository): ViewMod
     // Favoride olup olmadığını kontrol et
     fun isFavorite(mutfakId: String?): Boolean {
         return mutfakId != null && _favoriMutfaklar.value?.contains(mutfakId) == true
+    }
+
+    fun baslatSiparisDurumSimulasyonu(kullaniciId: String) {
+        viewModelScope.launch {
+            val durumlar = listOf(
+                "Siparişiniz Hazırlanıyor",
+                "Siparişiniz Yola Çıktı",
+                "Sipariş Teslim Edildi",
+                "Geçmiş Sipariş"
+            )
+
+            for (durum in durumlar) {
+                rep.guncelleSiparisDurum(kullaniciId, durum)
+                delay(3000)
+                aktifSiparisAl(kullaniciId)
+            }
+        }
     }
 }
