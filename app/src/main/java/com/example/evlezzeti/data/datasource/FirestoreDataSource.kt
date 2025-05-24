@@ -10,6 +10,7 @@ import com.example.evlezzeti.data.entity.Siparis
 import com.example.evlezzeti.data.entity.Users
 import com.example.evlezzeti.data.entity.Yemek
 import com.google.firebase.firestore.CollectionReference
+import kotlinx.coroutines.tasks.await
 
 
 class FirestoreDataSource(
@@ -204,5 +205,45 @@ class FirestoreDataSource(
         siparislerCollection.document().set(siparis)
     }
 
+    fun aktifSiparisByKullaniciIdAl(
+        kullaniciId: String,
+        onSuccess: (Siparis?) -> Unit,
+        onFailure: (Exception) -> Unit) {
+        siparislerCollection
+            .whereEqualTo("kullaniciId", kullaniciId)
+            .whereIn("siparisDurum", listOf("Sipariş Alındı",
+                "Siparişiniz Hazırlanıyor",
+                "Siparişiniz Yola Çıktı",
+                "Sipariş Teslim Edildi"))
+            .limit(1)
+            .get()
+            .addOnSuccessListener { result ->
+                val siparis = result.firstOrNull()?.toObject(Siparis::class.java)
+                onSuccess(siparis)
+                Log.e("aktifSiparisByKullaniciIdAl", "Sipariş: $siparis $kullaniciId")
+            }
+            .addOnFailureListener { exception ->
+                onFailure(exception)
+            }
+    }
+    suspend fun guncelleSiparisDurum(kullaniciId: String, yeniDurum: String) {
+        try {
+            val snapshot = siparislerCollection
+                .whereEqualTo("kullaniciId", kullaniciId)
+                .whereIn("siparisDurum", listOf("Sipariş Alındı",
+                    "Sipariş Onaylandı",
+                    "Siparişiniz Hazırlanıyor",
+                    "Siparişiniz Yola Çıktı",
+                    "Sipariş Teslim Edildi"))
+                .limit(1)
+                .get()
+                .await()
+
+            val doc = snapshot.documents.firstOrNull()
+            doc?.reference?.update("siparisDurum", yeniDurum)
+        } catch (e: Exception) {
+            Log.e("FirestoreDataSource", "Durum güncellenirken hata oluştu", e)
+        }
+    }
 
 }

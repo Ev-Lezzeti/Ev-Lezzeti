@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.evlezzeti.R
@@ -15,6 +17,7 @@ import com.example.evlezzeti.ui.adapter.KategoriAdapter
 import com.example.evlezzeti.ui.adapter.MutfakAdapter
 import com.example.evlezzeti.ui.adapter.OneriAdapter
 import com.example.evlezzeti.ui.viewmodel.BottomNavMenuViewModel
+import com.example.evlezzeti.ui.viewmodel.SharedKullaniciViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,7 +25,7 @@ class BottomNavMenuFragment : Fragment() {
     private lateinit var binding: FragmentBottomNavMenuBinding
     private lateinit var viewModel: BottomNavMenuViewModel
     private lateinit var mutfakAdapter: MutfakAdapter
-
+    private val sharedKullaniciViewModel: SharedKullaniciViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +35,33 @@ class BottomNavMenuFragment : Fragment() {
         binding.bottomNavMenuFragment = this
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        val kullaniciId = sharedKullaniciViewModel.kullaniciId.value
+        if (!kullaniciId.isNullOrEmpty()) {
+            viewModel.aktifSiparisAl(kullaniciId)
+            viewModel.baslatSiparisDurumSimulasyonu(kullaniciId)
+        }
+
+
+        viewModel.aktifSiparis.observe(viewLifecycleOwner) { siparis ->
+            if (siparis != null) {
+                binding.aktifSiparisMCV.visibility = View.VISIBLE
+                binding.siparisDurum.text = siparis.siparisDurum.orEmpty()
+                binding.textViewMutfakAd.text = siparis.mutfakAd.orEmpty()
+                binding.textViewTutar.text = "Toplam : ${siparis.siparisFiyat.orEmpty()}"
+                binding.textViewAdres.text = "Adres: ${siparis.siparisAdres.orEmpty()}"
+                binding.textViewSiparisZamani.text = "Sipariş verildi: ${siparis.siparisTarih.orEmpty()}"
+            } else {
+                binding.aktifSiparisMCV.visibility = View.GONE
+            }
+        }
+
+        viewModel.hata.observe(viewLifecycleOwner) { hataMesaji ->
+            hataMesaji?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+        }
+
 
         // Filtreleme chip'lerinin tıklama olaylarını ayarla
         setupFilterChips()

@@ -1,5 +1,7 @@
 package com.example.evlezzeti.data.entity
 
+import java.io.Serializable
+
 data class Siparis(
     var siparisId:String?="",
     var kullaniciId:String?="",
@@ -13,4 +15,4 @@ data class Siparis(
     var siparisAdres:String?="",
     var siparisTarih:String?="",
     var kuryeNot:String?="",
-    var siparisDurum:String?="",)
+    var siparisDurum:String?="",) : Serializable

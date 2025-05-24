@@ -48,7 +48,7 @@
                 android:shadowDx="5"
                 android:shadowDy="5"
                 android:shadowRadius="5"
-                android:text="EV LEZZETİ"
+                android:text="EVLEZZETİ"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/anaRenk"
@@ -69,7 +69,7 @@
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/kategoriText"
+                app:layout_constraintBottom_toTopOf="@+id/aktifSiparisMCV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/uygulamaAdi"
@@ -110,6 +110,100 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/aktifSiparisMCV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardView"
+                app:strokeColor="@color/anaRenk">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/textViewMutfakAd"
+                        style="@style/GenelTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ömer Mutfak"
+                        android:textColor="@color/anaRenk"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textViewTutar"
+                        style="@style/GenelTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Toplam: 129.90 ₺"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/textViewAdres"
+                        style="@style/KucukTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Adres: Atatürk Mah. 12. Sokak No: 5"
+                        android:textColor="@color/gray"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/textViewSiparisZamani"
+                        style="@style/KucukTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Siparis Zamanı: 23.05.2025 19:30"
+                        android:textColor="@color/gray"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/siparisDurum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sipariş Alındı"
+                        style="@style/GenelTextStyle"
+                        android:layout_marginTop="4dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/anaRenk"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/buttonSiparisiGoster"
+                        style="@style/ButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:backgroundTint="@color/white"
+                        android:text="Detayları Gör"
+                        android:textAllCaps="false"
+                        android:textColor="@color/anaRenk"
+                        android:textSize="16sp"
+                        app:iconPadding="2dp"
+                        app:strokeColor="@color/anaRenk"
+                        app:strokeWidth="1dp" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
             <TextView
                 android:id="@+id/kategoriText"
                 style="@style/GenelTextStyle"
@@ -123,7 +217,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+                app:layout_constraintTop_toBottomOf="@+id/aktifSiparisMCV" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rVKategoriler"

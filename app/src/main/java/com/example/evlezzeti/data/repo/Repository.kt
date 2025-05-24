@@ -34,5 +34,16 @@ class Repository (var fds:FirestoreDataSource)  {
     fun siparisEkle(siparis: Siparis){
         fds.siparisEkle(siparis)
     }
+    fun aktifSiparisAl(
+        kullaniciId: String,
+        onSuccess: (Siparis?) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        fds.aktifSiparisByKullaniciIdAl(kullaniciId, onSuccess, onFailure)
+    }
+
+    suspend fun guncelleSiparisDurum(kullaniciId: String, yeniDurum: String) {
+        fds.guncelleSiparisDurum(kullaniciId, yeniDurum)
+    }
 
 }

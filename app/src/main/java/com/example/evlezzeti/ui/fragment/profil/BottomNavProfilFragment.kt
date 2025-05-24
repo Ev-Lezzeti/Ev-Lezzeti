@@ -1,4 +1,4 @@
-package com.example.evlezzeti.ui.fragment
+package com.example.evlezzeti.ui.fragment.profil
 
 import android.content.Intent
 import android.os.Build
@@ -32,6 +32,8 @@ class BottomNavProfilFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_bottom_nav_profil,container,false)
         binding.bottomNavProfilFragment = this
         auth = FirebaseAuth.getInstance()
+
+        binding.textViewEPosta.text = auth.currentUser?.email.toString()
 
         binding.buttonCikisYap.setOnClickListener { // Çıkış yapma butonu
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
