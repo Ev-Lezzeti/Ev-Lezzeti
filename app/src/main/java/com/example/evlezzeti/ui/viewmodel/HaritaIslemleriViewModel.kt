@@ -12,4 +12,8 @@ class HaritaIslemleriViewModel @Inject constructor (var rep : Repository): ViewM
     fun kullaniciKaydet(kullanici: Kullanici){
         rep.kullaniciKaydet(kullanici)
     }
+
+    fun kullaniciGuncelle(kullanici: Kullanici){
+        rep.kullaniciGuncelle(kullanici)
+    }
 }

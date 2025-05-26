@@ -25,6 +25,8 @@ class Repository (var fds:FirestoreDataSource)  {
 
     fun kullaniciKaydet(kullanici: Kullanici) = fds.kullaniciKaydet(kullanici)
 
+    fun kullaniciGuncelle(kullanici: Kullanici) = fds.kullaniciGuncelle(kullanici)
+
     fun kullaniciAdresKontrol(kullaniciId: String, callback: (Boolean) -> Unit) {
         fds.kullaniciAdresKontrol(kullaniciId, callback)
     }
@@ -44,6 +46,10 @@ class Repository (var fds:FirestoreDataSource)  {
 
     suspend fun guncelleSiparisDurum(kullaniciId: String, yeniDurum: String) {
         fds.guncelleSiparisDurum(kullaniciId, yeniDurum)
+    }
+
+    suspend fun tumSiparislerByKullaniciAl(kullaniciId: String): List<Siparis> {
+        return fds.tumSiparislerByKullaniciIdAl(kullaniciId)
     }
 
 }

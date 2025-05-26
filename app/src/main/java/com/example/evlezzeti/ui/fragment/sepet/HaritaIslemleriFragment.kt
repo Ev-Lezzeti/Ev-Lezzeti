@@ -15,9 +15,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.evlezzeti.R
 import com.example.evlezzeti.data.entity.Kullanici
 import com.example.evlezzeti.databinding.FragmentHaritaIslemleriBinding
+import com.example.evlezzeti.ui.fragment.girissayfasi.KullaniciVerifiedArgs
 import com.example.evlezzeti.ui.viewmodel.HaritaIslemleriViewModel
 import com.example.evlezzeti.ui.viewmodel.SharedKullaniciViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -41,6 +43,8 @@ class HaritaIslemleriFragment : Fragment() ,OnMapReadyCallback{
     private lateinit var kullaniciEPosta :String
     private val sharedKullaniciViewModel: SharedKullaniciViewModel by activityViewModels()
     private lateinit var kullanici: Kullanici
+    private var kullaniciGuncelle = false
+    val bundle: HaritaIslemleriFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,8 +90,16 @@ class HaritaIslemleriFragment : Fragment() ,OnMapReadyCallback{
                 kullanici.kullaniciTelefon = telefon
                 kullanici.kullaniciEnlem = mMap.cameraPosition.target.latitude.toString()
                 kullanici.kullaniciBoylam = mMap.cameraPosition.target.longitude.toString()
-                viewModel.kullaniciKaydet(kullanici)
-                Toast.makeText(requireContext(), "${kullanici.kullaniciAd} adresi kaydedildi!", Toast.LENGTH_SHORT).show()
+
+                kullaniciGuncelle = bundle.kullaniciGuncelleme
+                if (kullaniciGuncelle == false) {
+                    viewModel.kullaniciKaydet(kullanici)
+                    Toast.makeText(requireContext(), "${kullanici.kullaniciAd} adresi kaydedildi!", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    viewModel.kullaniciGuncelle(kullanici)
+                    Toast.makeText(requireContext(), "${kullanici.kullaniciAd} adresi guncellendi!", Toast.LENGTH_SHORT).show()
+                }
                 findNavController().navigateUp()
             } else {
                 Toast.makeText(requireContext(), "Kullanıcı ID yüklenemedi!", Toast.LENGTH_SHORT).show()
