@@ -34,7 +34,14 @@
         android:id="@+id/bottomNavProfilFragment"
         android:name="com.example.evlezzeti.ui.fragment.profil.BottomNavProfilFragment"
         android:label="BottomNavProfilFragment"
-        tools:layout="@layout/fragment_bottom_nav_profil"/>
+        tools:layout="@layout/fragment_bottom_nav_profil">
+        <action
+            android:id="@+id/action_bottomNavProfilFragment_to_haritaIslemleriFragment"
+            app:destination="@id/haritaIslemleriFragment" />
+        <action
+            android:id="@+id/action_bottomNavProfilFragment_to_gecmisSiparislerFragment"
+            app:destination="@id/gecmisSiparislerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mutfakDetayFragment"
         android:name="com.example.evlezzeti.ui.fragment.menu.MutfakDetayFragment"
@@ -59,7 +66,12 @@
         android:id="@+id/haritaIslemleriFragment"
         android:name="com.example.evlezzeti.ui.fragment.sepet.HaritaIslemleriFragment"
         android:label="fragment_harita_islemleri"
-        tools:layout="@layout/fragment_harita_islemleri" />
+        tools:layout="@layout/fragment_harita_islemleri" >
+        <argument
+            android:name="kullaniciGuncelleme"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
     <fragment
         android:id="@+id/odemeFragment"
         android:name="com.example.evlezzeti.ui.fragment.sepet.OdemeFragment"
@@ -67,6 +79,15 @@
         <action
             android:id="@+id/odemeFragmentToBottomNavMenuFragment"
             app:destination="@id/bottomNavMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gecmisSiparislerFragment"
+        android:name="com.example.evlezzeti.ui.fragment.profil.GecmisSiparislerFragment"
+        android:label="GecmisSiparislerFragment" >
+        <argument
+            android:name="kullaniciId"
+            app:argType="string"
+            android:defaultValue='""' />
     </fragment>
 
 </navigation>

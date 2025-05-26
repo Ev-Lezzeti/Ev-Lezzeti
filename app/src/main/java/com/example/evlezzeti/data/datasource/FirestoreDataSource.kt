@@ -161,6 +161,30 @@ class FirestoreDataSource(
         kullanicilarCollection.document().set(yeniKullanici)
     }
 
+    fun kullaniciGuncelle(kullanici: Kullanici) {
+        val kullaniciRef = kullanicilarCollection.document(kullanici.kullaniciId ?: return)
+
+        val yeniKullanici = Kullanici(
+            kullanici.kullaniciId ?: "",
+            kullanici.ePosta ?: "",
+            kullanici.kullaniciTelefon ?: "",
+            kullanici.kullaniciAd ?: "",
+            kullanici.kullaniciAdress ?: "",
+            kullanici.kullaniciEnlem ?: "",
+            kullanici.kullaniciBoylam ?: "",
+            kullanici.favoriler ?: ""
+        )
+
+        kullaniciRef.set(yeniKullanici)
+            .addOnSuccessListener {
+                Log.d("Firestore", "Kullanıcı başarıyla eklendi/güncellendi.")
+            }
+            .addOnFailureListener { e ->
+                Log.e("Firestore", "Kullanıcı eklenirken/güncellenirken hata oluştu.", e)
+            }
+    }
+
+
     fun kullaniciAdresKontrol(kullaniciId: String, callback: (Boolean) -> Unit) {
         if (kullaniciId != "Id Yok") {
             kullanicilarCollection
@@ -243,6 +267,19 @@ class FirestoreDataSource(
             doc?.reference?.update("siparisDurum", yeniDurum)
         } catch (e: Exception) {
             Log.e("FirestoreDataSource", "Durum güncellenirken hata oluştu", e)
+        }
+    }
+    suspend fun tumSiparislerByKullaniciIdAl(kullaniciId: String): List<Siparis> {
+        return try {
+            val snapshot = siparislerCollection
+                .whereEqualTo("kullaniciId", kullaniciId)
+                .get()
+                .await()
+
+            snapshot.documents.mapNotNull { it.toObject(Siparis::class.java) }
+        } catch (e: Exception) {
+            Log.e("FirestoreDataSource", "Hata: ${e.localizedMessage}")
+            emptyList()
         }
     }
 

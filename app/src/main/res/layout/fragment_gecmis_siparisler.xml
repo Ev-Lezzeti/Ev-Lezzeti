@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+            <variable
+                name="gecmisSiparislerFragment"
+                type="com.example.evlezzeti.ui.fragment.profil.GecmisSiparislerFragment" />
+            <variable
+                name="gecmisSiparislerAdapter"
+                type="com.example.evlezzeti.ui.adapter.GecmisSiparislerAdapter" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.profil.GecmisSiparislerFragment">
+
+        <TextView
+            android:id="@+id/textView21"
+            style="@style/GenelTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Siparişlerim"
+            android:textColor="@color/anaRenk"
+            android:textSize="28sp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gecmisSiparislerRV"
+            android:layout_width="0dp"
+            android:adapter="@{gecmisSiparislerAdapter}"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
