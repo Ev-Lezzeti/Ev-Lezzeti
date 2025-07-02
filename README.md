@@ -103,14 +103,17 @@ Aşağıdaki görseller projeye ait posterden alınmıştır ve temel kullanıc�
 | Profil Ekranı     | Kullanıcı bilgileri, geçmiş siparişler ve adres yönetimi    |
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/176cd363-03e2-4a94-bc16-944895bb4c6e" width="200"/>
-  <img src="https://github.com/user-attachments/assets/6af83477-35a5-4e45-81a2-ef69d5208688" width="200"/>
+  <img src="https://github.com/user-attachments/assets/19743652-c47f-4b4c-9801-092cb1b781ab" width="200"/>
+  <img src="https://github.com/user-attachments/assets/baff8d86-2bfb-46d8-b3af-d50b42d67d58" width="200"/>
   <img src="https://github.com/user-attachments/assets/d8342c1a-fae9-4c3d-be6a-006af9b22c18" width="200"/>
   <img src="https://github.com/user-attachments/assets/3991beb0-a658-42c4-9021-92ef9ea1600c" width="200"/>
 </p>
+
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/baff8d86-2bfb-46d8-b3af-d50b42d67d58" width="200"/>
-  <img src="https://github.com/user-attachments/assets/19743652-c47f-4b4c-9801-092cb1b781ab" width="200"/>
+    <img src="https://github.com/user-attachments/assets/3a85ce87-e0b4-41f5-bbef-493956d0a37d" width="200"/>
+
+  <img src="https://github.com/user-attachments/assets/6af83477-35a5-4e45-81a2-ef69d5208688" width="200"/>
+  
   <img src="https://github.com/user-attachments/assets/3e5e6d76-454f-4afa-8e1f-75da7e025287" width="200"/>
 </p>
 <p align="center">
@@ -120,7 +123,7 @@ Aşağıdaki görseller projeye ait posterden alınmıştır ve temel kullanıc�
 </p>
 <p align="center">
   <img src="https://github.com/user-attachments/assets/26d5ba5e-5ba2-4c71-857e-ae2f05956137" width="200"/>
-  <img src="https://github.com/user-attachments/assets/3a85ce87-e0b4-41f5-bbef-493956d0a37d" width="200"/>
+      <img src="https://github.com/user-attachments/assets/176cd363-03e2-4a94-bc16-944895bb4c6e" width="200"/>
   <img src="https://github.com/user-attachments/assets/01fb9372-dd95-438f-af59-759ffe65981b" width="200"/> 
 </p>
 
